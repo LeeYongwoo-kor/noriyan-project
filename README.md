@@ -13,6 +13,10 @@
 
 ---
 
+### > Nextjs (v13.1.1)
+
+1. npx create-next-app@latest --typescript
+
 ### > Tailwind CSS
 
 https://tailwindcss.com/docs/installation
@@ -48,7 +52,3 @@ module.exports = {
 ---
 
 ## **Server**
-
-### > Nextjs (v13.1.1)
-
-1. npx create-next-app@latest --typescript
