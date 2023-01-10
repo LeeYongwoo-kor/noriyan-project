@@ -15,7 +15,9 @@
 
 ### > Nextjs (v13.1.1)
 
-1. npx create-next-app@latest --typescript
+- npx create-next-app@latest --typescript
+
+---
 
 ### > Tailwind CSS
 
@@ -51,4 +53,19 @@ module.exports = {
 
 ---
 
-## **Server**
+### > Font Awesome
+
+> https://fontawesome.com/icons
+
+1. npm i --save @fortawesome/fontawesome-svg-core
+2. npm install --save @fortawesome/free-solid-svg-icons
+3. npm i --save @fortawesome/free-brands-svg-icons
+4. npm i --save @fortawesome/react-fontawesome@latest
+
+※ Typescript Issue
+
+![FontAwesomeIconProps 오류](https://user-images.githubusercontent.com/75498045/211368357-f42025bd-c6ba-46e5-b83f-b073b21c87ed.png)
+
+> solution
+>
+> > https://github.com/FortAwesome/react-fontawesome/issues/366
