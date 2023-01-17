@@ -69,3 +69,7 @@ module.exports = {
 > solution
 >
 > > https://github.com/FortAwesome/react-fontawesome/issues/366
+
+### > Framer Motion
+
+- npm i framer-motion
