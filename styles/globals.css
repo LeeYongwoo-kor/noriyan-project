@@ -5,41 +5,37 @@
 @tailwind utilities;
 
 @layer base {
-  .my-gradient {
+  .main-gradient-to-bottom {
     background: linear-gradient(
       to bottom,
-      rgba(254, 107, 37, 0) 75%,
-      rgba(254, 107, 37, 0.25) 80%,
-      rgba(254, 107, 37, 0.5) 90%,
-      rgba(254, 107, 37, 0.75) 95%,
-      rgba(254, 107, 37, 1) 100%
+      rgba(254, 125, 60, 0) 80%,
+      rgba(254, 125, 60, 0.25) 85%,
+      rgba(254, 125, 60, 0.5) 90%,
+      rgba(254, 125, 60, 0.75) 95%,
+      rgba(254, 125, 60, 1) 100%
     );
   }
 
-  .next,
-  .prev {
-    top: calc(50% - 20px);
-    position: absolute;
-    background: white;
+  .main-mb-gradient-to-bottom {
+    background: linear-gradient(
+      to bottom,
+      rgba(254, 125, 60, 1) 0%,
+      rgba(254, 125, 60, 0.75) 40%,
+      rgba(254, 125, 60, 0.5) 60%,
+      rgba(254, 125, 60, 0.25) 80%,
+      rgba(254, 125, 60, 0) 100%
+    );
+  }
+
+  .white-circle {
+    width: 30px;
+    height: 30px;
     border-radius: 30px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-    z-index: 2;
+    background-color: white;
+    opacity: 0.4;
   }
 
-  .next {
-    right: 10px;
-  }
-
-  .prev {
-    left: 10px;
-    transform: scale(-1);
+  .white-circle:hover {
+    opacity: 0.8;
   }
 }
