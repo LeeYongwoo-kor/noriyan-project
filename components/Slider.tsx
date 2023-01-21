@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import { useState } from "react";
 import { images } from "../constants/images";
+import { cls } from "../libs/utils";
 import { Kinds } from "../pages";
 
 const variants = {
@@ -24,7 +25,6 @@ const variants = {
   },
 };
 
-const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
@@ -39,11 +39,11 @@ export default function Slider({ component }: Kinds) {
   };
 
   return (
-    <div className="relative w-full h-screen bg-slate-500">
-      <div className="relative flex overflow-hidden mx-auto w-[40rem] h-[28rem] bg-slate-900">
+    <div className="relative w-full">
+      <div className="relative flex mx-auto overflow-hidden max-w-[40rem] h-[28rem] bg-slate-800">
         <AnimatePresence initial={false} custom={direction}>
           <motion.img
-            className="absolute w-full h-full"
+            className="absolute h-full"
             key={page}
             src={sliders[imageIndex]}
             custom={direction}
@@ -53,12 +53,13 @@ export default function Slider({ component }: Kinds) {
             exit="exit"
             transition={{
               x: { type: "just", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.15 },
+              opacity: { duration: 0.1 },
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={(e, { offset, velocity }) => {
+              const swipeConfidenceThreshold = 10000;
               const swipe = swipePower(offset.x, velocity.x);
 
               if (swipe < -swipeConfidenceThreshold) {
@@ -82,7 +83,6 @@ export default function Slider({ component }: Kinds) {
             clipRule="evenodd"
           />
         </svg>
-
         <svg
           onClick={() => paginate(1)}
           xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +96,17 @@ export default function Slider({ component }: Kinds) {
             clipRule="evenodd"
           />
         </svg>
+      </div>
+      <div className="grid w-1/3 grid-cols-5 mx-auto mt-5">
+        {[...Array(sliders.length)].map((_, idx) => (
+          <div
+            key={idx}
+            className={cls(idx === imageIndex ? "bg-main" : "bg-slate-600")}
+            onClick={() => paginate(idx - imageIndex)}
+          >
+            {idx}
+          </div>
+        ))}
       </div>
     </div>
   );
