@@ -1,4 +1,5 @@
 import { AnimatePresence, motion, wrap } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import { images } from "../constants/images";
 import { cls } from "../libs/utils";
@@ -7,7 +8,7 @@ import { Kinds } from "../pages";
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 1000 : -1000,
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
     };
   },
@@ -19,8 +20,8 @@ const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 1,
     };
   },
 };
@@ -40,20 +41,22 @@ export default function Slider({ component }: Kinds) {
 
   return (
     <div className="relative w-full">
-      <div className="relative flex mx-auto overflow-hidden max-w-[40rem] h-[28rem] bg-slate-800">
+      <div className="relative flex mx-auto overflow-hidden max-w-[48rem] h-[34rem] bg-zinc-800">
         <AnimatePresence initial={false} custom={direction}>
-          <motion.img
-            className="absolute h-full"
+          <motion.div
+            className="absolute w-full h-full"
             key={page}
-            src={sliders[imageIndex]}
             custom={direction}
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "just", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.1 },
+              x: {
+                type: "tween",
+                duration: 0.4,
+              },
+              opacity: { duration: 0.2 },
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -68,7 +71,17 @@ export default function Slider({ component }: Kinds) {
                 paginate(-1);
               }
             }}
-          />
+          >
+            <Image
+              src={sliders[imageIndex]}
+              alt="slider_image"
+              fill
+              quality={100}
+              draggable={false}
+              priority={true}
+            />
+          </motion.div>
+          <motion.img />
         </AnimatePresence>
         <svg
           onClick={() => paginate(-1)}
@@ -97,15 +110,16 @@ export default function Slider({ component }: Kinds) {
           />
         </svg>
       </div>
-      <div className="grid w-1/3 grid-cols-5 mx-auto mt-5">
-        {[...Array(sliders.length)].map((_, idx) => (
+      <div className="flex items-center justify-center my-5 space-x-1">
+        {[...Array(sliders?.length)].map((_, idx) => (
           <div
             key={idx}
-            className={cls(idx === imageIndex ? "bg-main" : "bg-slate-600")}
+            className={cls(
+              "aspect-square rounded-full w-7 cursor-pointer",
+              idx === imageIndex ? "bg-main" : "bg-slate-500"
+            )}
             onClick={() => paginate(idx - imageIndex)}
-          >
-            {idx}
-          </div>
+          ></div>
         ))}
       </div>
     </div>
