@@ -2,6 +2,7 @@ import { AnimatePresence, motion, wrap } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { images } from "../constants/images";
+import { useInterval } from "../libs/useInterval";
 import { cls } from "../libs/utils";
 import { Kinds } from "../pages";
 
@@ -31,6 +32,7 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 export default function Slider({ component }: Kinds) {
+  const timer = 3000;
   const sliders = images.slider[component];
   const [[page, direction], setPage] = useState([0, 0]);
   const imageIndex = wrap(0, sliders.length, page);
@@ -38,6 +40,12 @@ export default function Slider({ component }: Kinds) {
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
+
+  useInterval(() => {
+    paginate(1);
+  }, timer);
+
+  const notice = ["I love sex", "I love fellatio", "I love Ssipjil"];
 
   return (
     <div className="relative w-full">
@@ -121,6 +129,9 @@ export default function Slider({ component }: Kinds) {
             onClick={() => paginate(idx - imageIndex)}
           ></div>
         ))}
+      </div>
+      <div className="flex items-center justify-center h-24 text-2xl">
+        {notice[imageIndex]}
       </div>
     </div>
   );
