@@ -19,8 +19,8 @@ module.exports = {
         darkmain: "rgb(233, 77, 1)",
       },
       animation: {
-        change: "change 16s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        fadein: "fadein 0.5s linear",
+        change: "change 9s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        fadein: "fadein 0.5s backwards",
         fadeout: "fadeout 0.5s linear",
       },
       keyframes: {
@@ -35,9 +35,11 @@ module.exports = {
         fadein: {
           from: {
             opacity: 0,
+            transform: "translate3d(0, 20px, 0)",
           },
           to: {
             opacity: 1,
+            transform: "translateZ(0)",
           },
         },
         fadeout: {
@@ -51,6 +53,9 @@ module.exports = {
       },
       fontFamily: {
         mincho: ["Shippori Mincho", "serif"],
+        kosugi: ["Kosugi Maru", "sans-serif"],
+        noto: ["Noto Sans JP", "sans-serif"],
+        murecho: ["Murecho", "sans-serif"],
       },
       spacing: {
         128: "32rem",
