@@ -4,7 +4,6 @@ import { useState } from "react";
 import { images } from "../constants/images";
 import { useInterval } from "../libs/useInterval";
 import { cls } from "../libs/utils";
-import { Kinds } from "../pages";
 
 const variants = {
   enter: (direction: number) => {
@@ -31,7 +30,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export default function Slider({ component }: Kinds) {
+export default function Slider({ component, width, height }: any) {
   const timer = 3000;
   const sliders = images.slider[component];
   const [[page, direction], setPage] = useState([0, 0]);
@@ -45,11 +44,15 @@ export default function Slider({ component }: Kinds) {
     paginate(1);
   }, timer);
 
-  const notice = ["I love sex", "I love fellatio", "I love Ssipjil"];
+  const notice = ["image1", "image2", "image3", "image4", "image5"];
 
   return (
     <div className="relative w-full">
-      <div className="relative flex mx-auto overflow-hidden max-w-[48rem] h-[34rem] bg-zinc-800">
+      <div
+        className={cls(
+          `relative flex mx-auto overflow-hidden max-w-[${width}rem] h-[${height}rem] bg-zinc-800`
+        )}
+      >
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             className="absolute w-full h-full"
@@ -96,11 +99,11 @@ export default function Slider({ component }: Kinds) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="absolute z-10 flex items-center justify-center w-10 h-10 text-black cursor-pointer white-circle inset-y-1/2 left-3"
+          className="absolute z-10 flex items-center justify-center text-white cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 left-1"
         >
           <path
             fillRule="evenodd"
-            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z"
+            d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
             clipRule="evenodd"
           />
         </svg>
@@ -109,11 +112,11 @@ export default function Slider({ component }: Kinds) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="absolute z-10 flex items-center justify-center w-10 h-10 text-black cursor-pointer white-circle inset-y-1/2 right-3"
+          className="absolute z-10 flex items-center justify-center text-white cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 right-1"
         >
           <path
             fillRule="evenodd"
-            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+            d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
             clipRule="evenodd"
           />
         </svg>
