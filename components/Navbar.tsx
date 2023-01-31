@@ -12,13 +12,13 @@ export default function Navbar({
     onClickCallback(position);
   };
   return (
-    <nav className="relative inset-0 w-full pt-10">
+    <nav className="relative inset-0 w-full md:pt-10">
       <div
         className={cls(
           "sticky top-0 px-2 mx-auto md:px-6 z-20",
           showNavBar
             ? "bg-[#eeeeee] transition ease-linear duration-150 shadow-xl bg-opacity-90"
-            : "bg-transparent transition ease-linear duration-100"
+            : "bg-transparent"
         )}
       >
         <div className="flex items-center justify-between h-20 mx-auto max-w-7xl">
@@ -83,7 +83,7 @@ export default function Navbar({
             <div className="hidden md:ml-6 md:block">
               <div
                 className={cls(
-                  "flex items-end h-full space-x-5 text-sm lg:text-lg font-bold drop-shadow-lg",
+                  "flex items-end h-full space-x-5 text-sm lg:text-lg font-[600] drop-shadow-md",
                   showNavBar ? "text-black" : "text-white"
                 )}
               >
@@ -93,7 +93,7 @@ export default function Navbar({
                     "px-3 py-2 rounded-md",
                     position.indexOf("concept") > -1
                       ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-lightmain hover:text-white"
+                      : "hover:bg-highlight hover:text-white"
                   )}
                 >
                   お知らせ
@@ -104,7 +104,7 @@ export default function Navbar({
                     "px-3 py-2 rounded-md",
                     position.indexOf("concept") > -1
                       ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-lightmain hover:text-white"
+                      : "hover:bg-highlight hover:text-white"
                   )}
                 >
                   コンセプト
@@ -115,7 +115,7 @@ export default function Navbar({
                     "px-3 py-2 rounded-md",
                     position.indexOf("menu") > -1
                       ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-lightmain hover:text-white"
+                      : "hover:bg-highlight hover:text-white"
                   )}
                 >
                   メニュー
@@ -126,7 +126,7 @@ export default function Navbar({
                     "px-3 py-2 rounded-md",
                     position.indexOf("info") > -1
                       ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-lightmain hover:text-white"
+                      : "hover:bg-highlight hover:text-white"
                   )}
                 >
                   店舗情報
@@ -137,7 +137,7 @@ export default function Navbar({
                     "px-3 py-2 rounded-md",
                     position.indexOf("access") > -1
                       ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-lightmain hover:text-white"
+                      : "hover:bg-highlight hover:text-white"
                   )}
                 >
                   アクセス
