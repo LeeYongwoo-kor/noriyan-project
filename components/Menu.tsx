@@ -77,17 +77,20 @@ function Menu({ innerRef, menu }: any) {
 
   const handleClickShowMore = () => {
     const copyState = [...showMore];
-    copyState[selectedKinds][selectedSub[category[selectedKinds]]] = true;
+    copyState[selectedKinds][
+      selectedSub[category[selectedKinds] as keyof ISubMenu]
+    ] = true;
     setShowMore(copyState);
   };
 
   useEffect(() => {
-    console.log("This is useEffect!");
     setSubMenu(() =>
       menu?.filter(
         (item: IMenu) =>
           item?.sub ===
-          subArr[selectedKinds][selectedSub[category[selectedKinds]]]
+          subArr[selectedKinds][
+            selectedSub[category[selectedKinds] as keyof ISubMenu]
+          ]
       )
     );
   }, [selectedKinds, selectedSub]);
@@ -126,7 +129,8 @@ function Menu({ innerRef, menu }: any) {
                   onClick={() => handleClickSub(selectedKinds, idx)}
                   className={cls(
                     "border px-6 h-10 rounded-xl",
-                    selectedSub[category[selectedKinds]] === idx
+                    selectedSub[category[selectedKinds] as keyof ISubMenu] ===
+                      idx
                       ? "text-white bg-main"
                       : "hover:bg-slate-200"
                   )}
@@ -138,7 +142,9 @@ function Menu({ innerRef, menu }: any) {
             </li>
           </ul>
           <ul className="grid w-full grid-cols-2 gap-8">
-            {showMore[selectedKinds][selectedSub[category[selectedKinds]]]
+            {showMore[selectedKinds][
+              selectedSub[category[selectedKinds] as keyof ISubMenu]
+            ]
               ? subMenu?.map((dish: IMenu) => (
                   <MenuAllDisplay key={dish.id} dish={dish} />
                 ))
@@ -148,8 +154,9 @@ function Menu({ innerRef, menu }: any) {
                     <MenuAllDisplay key={dish.id} dish={dish} />
                   ))}
           </ul>
-          {!showMore[selectedKinds][selectedSub[category[selectedKinds]]] &&
-          subMenu?.length > showMax ? (
+          {!showMore[selectedKinds][
+            selectedSub[category[selectedKinds] as keyof ISubMenu]
+          ] && subMenu?.length > showMax ? (
             <div
               onClick={handleClickShowMore}
               className="flex items-center justify-center w-full mt-8 cursor-pointer h-14 bg-slate-200 hover:bg-slate-300 rounded-xl"
