@@ -54,15 +54,24 @@ module.exports = {
       fontFamily: {
         mincho: ["Shippori Mincho", "serif"],
         kosugi: ["Kosugi Maru", "sans-serif"],
-        noto: ["Noto Sans JP", "sans-serif"],
         murecho: ["Murecho", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       spacing: {
         128: "32rem",
+        136: "34rem",
         144: "36rem",
+        160: "40rem",
+        172: "44rem",
+      },
+      fontSize: {
+        infoTime1: ["clamp(0.325rem, 2.5vw, 2rem)"],
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      flex: {
+        2: "2 2 0%",
       },
     },
   },
