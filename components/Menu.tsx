@@ -57,7 +57,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
   const categoryIcon: IconDefinition[] = [faUtensils, faWineGlass, faIceCream];
   const subArr = useMemo(() => getSubArr(menu), []);
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
   const [selectedKinds, setSelectedKinds] = useState<number>(0);
   // key: index of category array
   const [selectedSub, setSelectedSub] = useState<ISubMenu>({
@@ -72,7 +72,6 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
 
   const handleClickKinds = (kinds: number) => {
     setSelectedKinds(kinds);
-    setIsExpanded((prev) => !prev);
   };
 
   const handleClickSub = (kinds: number, sub: number) => {
@@ -80,41 +79,36 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
       ...prev,
       [category[kinds]]: sub,
     }));
-    setIsExpanded((prev) => !prev);
   };
 
   const handleClickShowMore = () => {
-    const copyState = [...showMore];
-    copyState[selectedKinds][
-      selectedSub[category[selectedKinds] as keyof ISubMenu]
-    ] = true;
-    setShowMore(copyState);
-    setIsExpanded((prev) => !prev);
+    setShowMore((prevShowMore) => {
+      const copyState = [...prevShowMore];
+      const selectedCategory = category[selectedKinds] as keyof ISubMenu;
+      copyState[selectedKinds][selectedSub[selectedCategory]] = true;
+      return copyState;
+    });
+    setShouldRender((prev) => !prev);
   };
 
   useEffect(() => {
-    setSubMenu(() =>
+    const selectedCategory = category[selectedKinds] as keyof ISubMenu;
+    setSubMenu(
       menu?.filter(
         (item: IMenu) =>
-          item?.sub ===
-          subArr[selectedKinds][
-            selectedSub[category[selectedKinds] as keyof ISubMenu]
-          ]
+          item?.sub === subArr[selectedKinds][selectedSub[selectedCategory]]
       )
     );
+    setShouldRender((prevShouldRender) => !prevShouldRender);
   }, [selectedKinds, selectedSub]);
 
   useEffect(() => {
     if (innerRef.current) {
       callbackPosition(innerRef);
     }
-  }, [isExpanded]);
+  }, [shouldRender]);
 
-  useEffect(() => {
-    if (innerRef.current) {
-      callbackPosition(innerRef);
-    }
-  }, []);
+  console.count("Menu Component");
 
   return (
     <article ref={innerRef} className="w-full md:overflow-hidden min-h-fit">
@@ -164,7 +158,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
                     selectedSub[category[selectedKinds] as keyof ISubMenu] ===
                       idx
                       ? "text-white bg-highlight border-transparent"
-                      : subItem === "季節物"
+                      : subItem === "おすすめ" || subItem === "季節物"
                       ? "border-main text-darkmain hover:bg-slate-200"
                       : "hover:bg-slate-200 text-slate-700 border-slate-300"
                   )}
