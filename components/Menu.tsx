@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
+import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
 import MenuAllDisplay from "./MenuAllDisplay";
 import MenuSpecial from "./MenuSpecial";
@@ -47,11 +48,16 @@ function getInitialShowStatus(subArr: string[][]): boolean[][] {
   return menuStatus;
 }
 
-function Menu({ innerRef, menu }: any) {
+function Menu({ innerRef, menu, callbackPosition }: any) {
   const category: string[] = ["food", "drink", "dessert"];
+  const description: string[] = [
+    "のりやん食堂の様々な手作り料理とお酒をぜひお楽しみください。",
+    "※ 売り切れの場合もございますので、最新情報は以下のメニューサイトからご確認ください。",
+  ];
   const categoryIcon: IconDefinition[] = [faUtensils, faWineGlass, faIceCream];
   const subArr = useMemo(() => getSubArr(menu), []);
 
+  const [isExpanded, setIsExpanded] = useState(false);
   const [selectedKinds, setSelectedKinds] = useState<number>(0);
   // key: index of category array
   const [selectedSub, setSelectedSub] = useState<ISubMenu>({
@@ -66,6 +72,7 @@ function Menu({ innerRef, menu }: any) {
 
   const handleClickKinds = (kinds: number) => {
     setSelectedKinds(kinds);
+    setIsExpanded((prev) => !prev);
   };
 
   const handleClickSub = (kinds: number, sub: number) => {
@@ -73,6 +80,7 @@ function Menu({ innerRef, menu }: any) {
       ...prev,
       [category[kinds]]: sub,
     }));
+    setIsExpanded((prev) => !prev);
   };
 
   const handleClickShowMore = () => {
@@ -81,6 +89,7 @@ function Menu({ innerRef, menu }: any) {
       selectedSub[category[selectedKinds] as keyof ISubMenu]
     ] = true;
     setShowMore(copyState);
+    setIsExpanded((prev) => !prev);
   };
 
   useEffect(() => {
@@ -95,17 +104,40 @@ function Menu({ innerRef, menu }: any) {
     );
   }, [selectedKinds, selectedSub]);
 
+  useEffect(() => {
+    if (innerRef.current) {
+      callbackPosition(innerRef);
+    }
+  }, [isExpanded]);
+
+  useEffect(() => {
+    if (innerRef.current) {
+      callbackPosition(innerRef);
+    }
+  }, []);
+
   return (
-    <article ref={innerRef} className="w-full min-h-fit">
+    <article ref={innerRef} className="w-full md:overflow-hidden min-h-fit">
       <MenuSpecial />
-      <Subtitle text="ALL MENU" />
+      <Subtitle text="ALL MENU" description={description}>
+        <Link
+          href="https://dining-menu.com/menu_system/sample_menu3/top.php?sc=215036&n=0&r=1Y/"
+          target={"_blank"}
+          className="inline-flex flex-col items-center px-4 py-2 font-medium transition-colors border-2 rounded-md shadow-sm cursor-pointer border-slate-400 hover:bg-slate-200"
+        >
+          <p className="flex items-center justify-center text-slate-500 font-murecho">
+            売り切れの情報確認へ
+          </p>
+        </Link>
+      </Subtitle>
+      <div className="flex items-center justify-center m-8"></div>
       <div className="flex flex-col items-center justify-center">
         <div className="flex justify-center w-full space-x-2">
           {category.map((kinds, idx) => (
             <button
               onClick={() => handleClickKinds(idx)}
               className={cls(
-                "px-4 py-2 text-lg font-bold transition-colors border shadow-sm w-36 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
+                "px-4 py-2 text-lg font-bold transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
                 selectedKinds === idx
                   ? "text-white bg-highlight border-transparent"
                   : "border-main border-2 [&>svg]:text-darkmain"
@@ -128,11 +160,13 @@ function Menu({ innerRef, menu }: any) {
                 <button
                   onClick={() => handleClickSub(selectedKinds, idx)}
                   className={cls(
-                    "border px-6 h-10 rounded-xl",
+                    "border px-6 h-10 rounded-xl font-medium",
                     selectedSub[category[selectedKinds] as keyof ISubMenu] ===
                       idx
-                      ? "text-white bg-main"
-                      : "hover:bg-slate-200"
+                      ? "text-white bg-highlight border-transparent"
+                      : subItem === "季節物"
+                      ? "border-main text-darkmain hover:bg-slate-200"
+                      : "hover:bg-slate-200 text-slate-700 border-slate-300"
                   )}
                   key={idx}
                 >
@@ -150,7 +184,7 @@ function Menu({ innerRef, menu }: any) {
                 ))
               : subMenu
                   ?.slice(0, showMax)
-                  .map((dish: IMenu) => (
+                  ?.map((dish: IMenu) => (
                     <MenuAllDisplay key={dish.id} dish={dish} />
                   ))}
           </ul>
