@@ -1,23 +1,79 @@
+import { navHeight, phonenumber } from "@constants/common";
+import { cls } from "@libs/utils";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
-import { phonenumber } from "../constants/shopInfo";
-import { cls } from "../libs/utils";
+import { IPositionInfo } from "pages";
+import { useState } from "react";
+import { CurrentPositionType, NavbarTypes } from "types";
 
-export default function Navbar({
-  showNavBar,
-  position,
-  onClickCallback,
-  children,
-}: any) {
-  const handleClick = (position: string) => {
-    onClickCallback(position);
+type NavbarProps = {
+  position: IPositionInfo;
+  children: React.ReactNode;
+};
+
+const navbar: NavbarTypes[] = [
+  "about",
+  "notice",
+  "menu",
+  "photoGallery",
+  "access",
+  "info",
+];
+
+const navbarJp: Record<NavbarTypes, string> = {
+  home: "",
+  about: "概要",
+  notice: "お知らせ",
+  menu: "メニュー",
+  photoGallery: "ギャラリー",
+  access: "アクセス",
+  info: "店舗情報",
+};
+
+function getNavbarJpName(navBar: NavbarTypes) {
+  return navbarJp[navBar];
+}
+
+export default function Navbar({ position, children }: NavbarProps) {
+  const positionMap = navbar.reduce((acc, pos, idx, arr) => {
+    const next: NavbarTypes | undefined = arr[idx + 1];
+    const start: number = position[pos] - navHeight;
+    const end: number = next ? position[next] - navHeight : Infinity;
+    return { ...acc, [pos]: { start, end } };
+  }, {});
+
+  const [showNavBar, setShowNavBar] = useState(false);
+  const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
+  const { scrollY } = useScroll();
+
+  const handleClick = (components: NavbarTypes) => {
+    const movePosition = position[components];
+
+    window.scroll({
+      top: movePosition,
+      behavior: "smooth",
+    });
   };
+
+  useMotionValueEvent(scrollY, "change", (scroll) => {
+    setShowNavBar(scroll >= 100);
+
+    const currentPosition = Object.entries(positionMap).find(
+      ([_, { start, end }]) => {
+        return scroll >= start && scroll < end;
+      }
+    ) as CurrentPositionType | undefined;
+
+    setCurrPosition(currentPosition ? currentPosition[0] : "home");
+  });
+
   return (
     <nav className="relative inset-0 w-full md:pt-10">
       <div
         className={cls(
           "sticky top-0 px-2 mx-auto md:px-6 z-20",
           showNavBar
-            ? "bg-[#eeeeee] transition ease-linear duration-150 shadow-xl bg-opacity-90"
+            ? "bg-[#eeeeee] transition ease-linear duration-150 shadow-xl bg-opacity-95"
             : "bg-transparent"
         )}
       >
@@ -83,80 +139,39 @@ export default function Navbar({
             <div className="hidden md:ml-6 md:block">
               <div
                 className={cls(
-                  "flex items-end h-full space-x-5 text-sm lg:text-lg font-[600] drop-shadow-md",
+                  "flex items-end h-full space-x-4 text-sm lg:text-lg font-semibold font-mincho",
                   showNavBar ? "text-black" : "text-white"
                 )}
               >
-                <button
-                  onClick={() => handleClick("concept")}
-                  className={cls(
-                    "px-3 py-2 rounded-md",
-                    position.indexOf("concept") > -1
-                      ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-highlight hover:text-white"
-                  )}
-                >
-                  お知らせ
-                </button>
-                <button
-                  onClick={() => handleClick("concept")}
-                  className={cls(
-                    "px-3 py-2 rounded-md",
-                    position.indexOf("concept") > -1
-                      ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-highlight hover:text-white"
-                  )}
-                >
-                  コンセプト
-                </button>
-                <button
-                  onClick={() => handleClick("menu")}
-                  className={cls(
-                    "px-3 py-2 rounded-md",
-                    position.indexOf("menu") > -1
-                      ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-highlight hover:text-white"
-                  )}
-                >
-                  メニュー
-                </button>
-                <button
-                  onClick={() => handleClick("info")}
-                  className={cls(
-                    "px-3 py-2 rounded-md",
-                    position.indexOf("info") > -1
-                      ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-highlight hover:text-white"
-                  )}
-                >
-                  店舗情報
-                </button>
-                <button
-                  onClick={() => handleClick("access")}
-                  className={cls(
-                    "px-3 py-2 rounded-md",
-                    position.indexOf("access") > -1
-                      ? "text-white bg-highlight hover:bg-darkmain"
-                      : "hover:bg-highlight hover:text-white"
-                  )}
-                >
-                  アクセス
-                </button>
+                {navbar.map((name: NavbarTypes, idx: number) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleClick(name)}
+                    className={cls(
+                      "px-4 py-1.5 rounded-xl transition-colors",
+                      currPosition.indexOf(name) > -1
+                        ? "text-white bg-highlight hover:bg-darkmain"
+                        : "hover:bg-highlight hover:text-white"
+                    )}
+                  >
+                    {getNavbarJpName(name)}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0 font-murecho">
             <div className="relative ml-3">
               <div>
                 <span className="md:ml-3">
                   <Link
                     href={`tel:${phonenumber}`}
-                    className="inline-flex flex-col items-center px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
+                    className="inline-flex flex-col items-center px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none"
                   >
                     <div className="hidden text-xs md:block">
                       ご予約・お問い合わせ
                     </div>
-                    <div className="flex items-center justify-center text-lg">
+                    <div className="flex items-center justify-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -169,8 +184,8 @@ export default function Navbar({
                           clipRule="evenodd"
                         />
                       </svg>
-                      <div className="hidden text-2xl md:block">
-                        &nbsp;052-937-6252
+                      <div className="hidden ml-2 text-2xl md:block">
+                        052-937-6252
                       </div>
                     </div>
                   </Link>
@@ -179,7 +194,6 @@ export default function Navbar({
             </div>
           </div>
         </div>
-        <div className="md:hidden" id="mobile-menu"></div>
       </div>
       {children}
     </nav>

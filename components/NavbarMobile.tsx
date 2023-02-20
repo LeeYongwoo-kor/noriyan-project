@@ -1,3 +1,4 @@
+import { navHeight } from "@constants/common";
 import {
   faCircleExclamation,
   faImages,
@@ -7,13 +8,28 @@ import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { IPositionInfo } from "pages";
 import { useState } from "react";
-import { NavbarTypes } from "types";
+import { CurrentPositionType, NavbarTypes } from "types";
 
 type NavbarMobileProps = {
   position: IPositionInfo;
 };
 
+const navbarMobile: NavbarTypes[] = [
+  "notice",
+  "menu",
+  "photoGallery",
+  "access",
+  "info",
+];
+
 export default function NavbarMobile({ position }: NavbarMobileProps) {
+  const positionMap = navbarMobile.reduce((acc, pos, idx, arr) => {
+    const next: NavbarTypes | undefined = arr[idx + 1];
+    const start: number = position[pos] - navHeight;
+    const end: number = next ? position[next] - navHeight : Infinity;
+    return { ...acc, [pos]: { start, end } };
+  }, {});
+
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
   const { scrollY } = useScroll();
 
@@ -27,31 +43,13 @@ export default function NavbarMobile({ position }: NavbarMobileProps) {
   };
 
   useMotionValueEvent(scrollY, "change", (scroll) => {
-    const { about, notice, menu, photoGallery, access, info } = position;
+    const currentPosition = Object.entries(positionMap).find(
+      ([_, { start, end }]) => {
+        return scroll >= start && scroll < end;
+      }
+    ) as CurrentPositionType | undefined;
 
-    switch (true) {
-      case scroll >= about && scroll < notice:
-        setCurrPosition("about");
-        break;
-      case scroll >= notice && scroll < menu:
-        setCurrPosition("notice");
-        break;
-      case scroll >= menu && scroll < photoGallery:
-        setCurrPosition("menu");
-        break;
-      case scroll >= photoGallery && scroll < access:
-        setCurrPosition("photoGallery");
-        break;
-      case scroll >= access && scroll < info:
-        setCurrPosition("access");
-        break;
-      case scroll >= info:
-        setCurrPosition("info");
-        break;
-      default:
-        setCurrPosition("home");
-        break;
-    }
+    setCurrPosition(currentPosition ? currentPosition[0] : "home");
   });
 
   return (
