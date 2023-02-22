@@ -1,12 +1,27 @@
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cls } from "@libs/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { cls } from "../libs/utils";
+import { IPositionInfo, NavbarTypes } from "types";
 
-export default function Main() {
+type MainProps = {
+  position: IPositionInfo;
+};
+
+export default function Main({ position }: MainProps) {
+  const handleClick = (components: NavbarTypes) => {
+    const movePosition = position[components];
+
+    window.scroll({
+      top: movePosition,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="absolute inset-0 min-h-fit sm:h-[56rem] h-144">
+    <div className="absolute inset-0 min-h-fit sm:h-[60rem] h-144">
       <div className="relative h-full">
         <Image
           src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/main_restaurant_2_hosei.jpg"
@@ -32,8 +47,8 @@ export default function Main() {
               width="499.983"
               height="499.983"
               viewBox="0 0 843 843"
-              filter="drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.6)) contrast(130%)"
-              className="sm:w-[28rem] sm:h-[28rem] w-80 h-80 animate-fadein animation-delay-300"
+              filter="drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.6)) brightness(90%) contrast(140%)"
+              className="w-64 h-64 sm:w-96 sm:h-96 lg:w-[28rem] lg:h-[28rem] animate-fadein animation-delay-300 opacity-90"
             >
               <image
                 x="83"
@@ -44,39 +59,64 @@ export default function Main() {
               />
             </svg>
           </div>
-          <div className="z-30 flex justify-between w-72">
-            <div className="box-border flex items-center justify-center h-12 transition duration-300 ease-in-out shadow-sm cursor-pointer w-36 min-w-fit hover:-translate-y-1 animate-fadein animation-delay-500 hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
+          <div className="z-30 flex justify-center w-full space-x-2 tracking-tight select-none font-poppins">
+            <div>
               <Link
                 href="https://www.instagram.com/kurumamichi.noriyan/"
                 target={"_blank"}
+                className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-36 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight"
               >
                 <FontAwesomeIcon
-                  className="mr-2 text-white"
-                  size="2x"
+                  className="text-white"
+                  size="xl"
                   icon={faInstagram}
                 />
+                <span className="hidden ml-2 sm:block sm:text-sm sm:text-white">
+                  INSTAGRAM
+                </span>
               </Link>
-              <span className={cls("text-sm text-white")}>INSTAGRAM</span>
             </div>
-            <div className="box-border flex items-center justify-center w-32 h-12 transition duration-300 ease-in-out shadow-sm cursor-pointer min-w-fit hover:-translate-y-1 animate-fadein animation-delay-700 hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="mr-1 text-white w-7 h-7"
+            <div className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-32 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
+              <button
+                className="flex items-center justify-center"
+                onClick={() => handleClick("menu")}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
-                  clipRule="evenodd"
+                <FontAwesomeIcon
+                  className="text-white"
+                  size="lg"
+                  icon={faUtensils}
                 />
-              </svg>
-              <span className={cls("text-sm text-white")}>ACCESS</span>
+                <span className="hidden ml-2 sm:block sm:text-sm sm:text-white">
+                  MENU
+                </span>
+              </button>
+            </div>
+            <div className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-32 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
+              <button
+                className="flex items-center justify-center"
+                onClick={() => handleClick("access")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6 text-white"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <span className="hidden ml-0.5 sm:block sm:text-sm sm:text-white">
+                  ACCESS
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="absolute justify-end hidden text-xs text-white md:flex top-3 right-5">
+      <div className="absolute justify-end hidden text-xs text-white md:flex top-3 right-5 font-murecho">
         車道のりやん食堂 | 居酒屋 | 家庭料理
       </div>
     </div>
