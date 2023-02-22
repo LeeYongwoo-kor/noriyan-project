@@ -1,17 +1,15 @@
 import { navHeight } from "@constants/common";
-import {
-  faCircleExclamation,
-  faImages,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn, faImages } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { IPositionInfo } from "pages";
 import { useState } from "react";
-import { CurrentPositionType, NavbarTypes } from "types";
+import { CurrentPositionType, IPositionInfo, NavbarTypes } from "types";
 
 type NavbarMobileProps = {
   position: IPositionInfo;
+  isShow: boolean;
+  callbackScrollMove: (components: NavbarTypes) => void;
 };
 
 const navbarMobile: NavbarTypes[] = [
@@ -22,7 +20,11 @@ const navbarMobile: NavbarTypes[] = [
   "info",
 ];
 
-export default function NavbarMobile({ position }: NavbarMobileProps) {
+export default function NavbarMobile({
+  position,
+  isShow,
+  callbackScrollMove,
+}: NavbarMobileProps) {
   const positionMap = navbarMobile.reduce((acc, pos, idx, arr) => {
     const next: NavbarTypes | undefined = arr[idx + 1];
     const start: number = position[pos] - navHeight;
@@ -33,13 +35,8 @@ export default function NavbarMobile({ position }: NavbarMobileProps) {
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
   const { scrollY } = useScroll();
 
-  const handleClick = (components: NavbarTypes) => {
-    const movePosition = position[components];
-
-    window.scroll({
-      top: movePosition,
-      behavior: "smooth",
-    });
+  const handleClickNav = (components: NavbarTypes) => {
+    callbackScrollMove(components);
   };
 
   useMotionValueEvent(scrollY, "change", (scroll) => {
@@ -52,28 +49,35 @@ export default function NavbarMobile({ position }: NavbarMobileProps) {
     setCurrPosition(currentPosition ? currentPosition[0] : "home");
   });
 
+  console.log("NavMobile");
+
   return (
-    <div className="sm:hidden">
-      <nav className="fixed bottom-0 z-20 flex w-full pt-3 pb-3 text-xs text-white divide-x divide-main justify-evenly bg-darkmain">
+    <div className={cls("md:hidden")}>
+      <nav
+        className={cls(
+          "fixed bottom-0 z-20 flex w-full pt-2 pb-2 text-xs text-white divide-x divide-main justify-evenly bg-darkmain",
+          isShow ? "animate-fadein visible" : "animate-fadeout invisible"
+        )}
+      >
         <button
-          onClick={() => handleClick("notice")}
+          onClick={() => handleClickNav("notice")}
           className={cls(
-            "flex flex-col flex-grow justify-between items-center space-y-2",
+            "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("notice") > -1
               ? "text-orange-900"
-              : "transition-colors hover:text-white"
+              : "hover:text-white"
           )}
         >
-          <FontAwesomeIcon size="xl" icon={faCircleExclamation} />
+          <FontAwesomeIcon size="2x" icon={faBullhorn} />
           <span>お知らせ</span>
         </button>
         <button
-          onClick={() => handleClick("menu")}
+          onClick={() => handleClickNav("menu")}
           className={cls(
-            "flex flex-col flex-grow justify-between items-center space-y-2",
+            "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("menu") > -1
               ? "text-orange-900"
-              : "transition-colors hover:text-white"
+              : "hover:text-white"
           )}
         >
           <svg
@@ -90,24 +94,24 @@ export default function NavbarMobile({ position }: NavbarMobileProps) {
           <span>メニュー</span>
         </button>
         <button
-          onClick={() => handleClick("photoGallery")}
+          onClick={() => handleClickNav("photoGallery")}
           className={cls(
-            "flex flex-col flex-grow justify-between items-center space-y-2",
+            "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("photoGallery") > -1
               ? "text-orange-900"
-              : "transition-colors hover:text-white"
+              : "hover:text-white"
           )}
         >
           <FontAwesomeIcon size="2x" icon={faImages} />
           <span>ギャラリー</span>
         </button>
         <button
-          onClick={() => handleClick("access")}
+          onClick={() => handleClickNav("access")}
           className={cls(
-            "flex flex-col flex-grow justify-between items-center space-y-2",
+            "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("access") > -1
               ? "text-orange-900"
-              : "transition-colors hover:text-white"
+              : "hover:text-white"
           )}
         >
           <svg
@@ -125,12 +129,12 @@ export default function NavbarMobile({ position }: NavbarMobileProps) {
           <span>アクセス</span>
         </button>
         <button
-          onClick={() => handleClick("info")}
+          onClick={() => handleClickNav("info")}
           className={cls(
-            "flex flex-col flex-grow justify-between items-center space-y-2",
+            "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("info") > -1
               ? "text-orange-900"
-              : "transition-colors hover:text-white"
+              : " hover:text-white"
           )}
         >
           <svg

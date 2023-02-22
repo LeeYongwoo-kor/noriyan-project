@@ -1,13 +1,16 @@
-import { navHeight, phonenumber } from "@constants/common";
+import { navHeight, phonenumber, tabletSize } from "@constants/common";
+import { faSmile, faSmileWink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
-import { IPositionInfo } from "pages";
 import { useState } from "react";
-import { CurrentPositionType, NavbarTypes } from "types";
+import { CurrentPositionType, IPositionInfo, NavbarTypes } from "types";
+import NavbarMobile from "./NavbarMobile";
 
 type NavbarProps = {
   position: IPositionInfo;
+  screenWidth: number | null;
   children: React.ReactNode;
 };
 
@@ -34,7 +37,11 @@ function getNavbarJpName(navBar: NavbarTypes) {
   return navbarJp[navBar];
 }
 
-export default function Navbar({ position, children }: NavbarProps) {
+export default function Navbar({
+  position,
+  screenWidth,
+  children,
+}: NavbarProps) {
   const positionMap = navbar.reduce((acc, pos, idx, arr) => {
     const next: NavbarTypes | undefined = arr[idx + 1];
     const start: number = position[pos] - navHeight;
@@ -42,17 +49,24 @@ export default function Navbar({ position, children }: NavbarProps) {
     return { ...acc, [pos]: { start, end } };
   }, {});
 
+  console.count("Navbar Component");
+
   const [showNavBar, setShowNavBar] = useState(false);
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
+  const [showNavBarMobile, setShowNavBarMobile] = useState(true);
   const { scrollY } = useScroll();
 
-  const handleClick = (components: NavbarTypes) => {
+  const handleClickNav = (components: NavbarTypes) => {
     const movePosition = position[components];
 
     window.scroll({
       top: movePosition,
       behavior: "smooth",
     });
+  };
+
+  const handleClickSmile = () => {
+    setShowNavBarMobile((prev) => !prev);
   };
 
   useMotionValueEvent(scrollY, "change", (scroll) => {
@@ -74,58 +88,39 @@ export default function Navbar({ position, children }: NavbarProps) {
           "sticky top-0 px-2 mx-auto md:px-6 z-20",
           showNavBar
             ? "bg-[#eeeeee] transition ease-linear duration-150 shadow-xl bg-opacity-95"
-            : "bg-transparent"
+            : "bg-transparent invisible sm:visible"
         )}
       >
-        <div className="flex items-center justify-between h-20 mx-auto max-w-7xl">
+        <div className="flex items-center justify-between mx-auto h-14 md:h-20 max-w-7xl">
           <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-main hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              aria-controls="mobile-menu"
+              className="inline-flex items-center justify-center p-3 rounded-md text-main focus:outline-none"
+              aria-controls="mobile-smile"
               aria-expanded="false"
+              onClick={handleClickSmile}
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className="block w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
+              <span
+                className={cls(
+                  showNavBarMobile ? "text-darkmain block" : "hidden"
+                )}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-              <svg
-                className="hidden w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+                <FontAwesomeIcon size="xl" icon={faSmileWink} />
+              </span>
+              <span className={cls(showNavBarMobile ? "hidden" : "block")}>
+                <FontAwesomeIcon size="xl" icon={faSmile} />
+              </span>
             </button>
           </div>
           <div className="flex items-center justify-center flex-1 md:items-stretch md:justify-start">
             <div className="flex items-center flex-shrink-0">
               <svg
-                onClick={() => handleClick("home")}
+                onClick={() => handleClickNav("home")}
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 843 843"
-                className="w-16 h-16 cursor-pointer"
+                className="cursor-pointer w-14 h-14 md:w-16 md:h-16"
               >
                 <image
                   x="83"
@@ -139,14 +134,14 @@ export default function Navbar({ position, children }: NavbarProps) {
             <div className="hidden md:ml-6 md:block">
               <div
                 className={cls(
-                  "flex items-end h-full space-x-4 text-sm lg:text-lg font-semibold font-mincho",
+                  "flex items-end h-full space-x-1 lg:space-x-4 text-sm lg:text-base xl:text-lg font-semibold font-mincho",
                   showNavBar ? "text-black" : "text-white"
                 )}
               >
                 {navbar.map((name: NavbarTypes, idx: number) => (
                   <button
                     key={idx}
-                    onClick={() => handleClick(name)}
+                    onClick={() => handleClickNav(name)}
                     className={cls(
                       "px-4 py-1.5 rounded-xl transition-colors",
                       currPosition.indexOf(name) > -1
@@ -185,7 +180,11 @@ export default function Navbar({ position, children }: NavbarProps) {
                         />
                       </svg>
                       <div className="hidden ml-2 text-2xl md:block">
-                        052-937-6252
+                        {phonenumber.slice(0, 3) +
+                          "-" +
+                          phonenumber.slice(3, 6) +
+                          "-" +
+                          phonenumber.slice(6)}
                       </div>
                     </div>
                   </Link>
@@ -196,6 +195,13 @@ export default function Navbar({ position, children }: NavbarProps) {
         </div>
       </div>
       {children}
+      {screenWidth && screenWidth < tabletSize ? (
+        <NavbarMobile
+          position={position}
+          isShow={showNavBarMobile}
+          callbackScrollMove={handleClickNav}
+        />
+      ) : null}
     </nav>
   );
 }
