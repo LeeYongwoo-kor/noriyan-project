@@ -54,16 +54,16 @@ export default function Access({ innerRef }: any) {
           className="w-full"
         ></iframe>
       </div>
-      <div className="flex items-center justify-center py-8 mt-8 text-xl font-semibold text-slate-700 font-kosugi rounded-xl bg-slate-200">
-        <div className="flex flex-col justify-center space-y-3">
-          <p className="mb-5 text-3xl">
+      <div className="flex items-center justify-center py-8 mt-8 font-semibold text-xlclamp text-slate-700 font-mPlus rounded-xl bg-slate-200">
+        <div className="flex flex-col justify-center space-y-1 sm:space-y-2 md:space-y-3">
+          <p className="mb-3 text-xl3clamp">
             <span className="mr-3 text-slate-700">
               <FontAwesomeIcon size="xl" icon={faTrainSubway} />
             </span>
             地下鉄でお越しの方
           </p>
           <p className="flex items-center">
-            <span className="relative inline-block w-8 h-8 mr-2">
+            <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
                 src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/sakura-dori_logo.png"
                 alt="higashi-yama_logo"
@@ -80,7 +80,7 @@ export default function Access({ innerRef }: any) {
             徒歩1分
           </p>
           <p className="flex items-center">
-            <span className="relative inline-block w-8 h-8 mr-2">
+            <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
                 src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/higashi-yama_logo.png"
                 alt="higashi-yama_logo"
