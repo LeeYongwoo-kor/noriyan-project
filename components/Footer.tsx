@@ -1,13 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import { phonenumber } from "@constants/common";
+import {
+  faEnvelope,
+  faMobilePhone,
+  faSquarePhone,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
-    <footer className="px-16 pt-24 pb-16 text-slate-100 font-extralight font-poppins bg-slate-700 min-h-fit h-128">
+    <footer className="px-10 pt-20 pb-12 text-sm font-light lg:px-20 text-slate-300 font-poppins bg-slate-700 min-h-fit">
       <div className="flex flex-col items-center justify-between w-full h-full">
-        <div className="grid w-full max-w-6xl grid-cols-3">
-          <div className="">
+        <div className="grid w-full grid-rows-2 sm:grid-cols-2 auto-rows-fr md:grid-cols-3 max-w-7xl">
+          <div className="md:row-span-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -24,48 +30,68 @@ export default function Footer() {
             </svg>
           </div>
           <div>
-            <div className="mb-8">
-              <h2 className="mb-2.5 text-xl font-medium">Service</h2>
-              <div className="space-y-1 text-slate-300">
-                <p className="font-murecho">月 ～ 土</p>
-                <p>17:00 - 23:00 (L.O. 22:00)</p>
-              </div>
-            </div>
-            <div>
-              <h2 className="mb-2.5 text-xl font-medium">Address</h2>
-              <div className="space-y-1 text-slate-300">
-                <p>〒 461-0003</p>
-                <p className="font-murecho">
-                  名古屋市東区筒井2-9-8 メゾン車道1階
-                </p>
-              </div>
+            <h2 className="mb-2.5 text-lg md:text-xl font-medium">Service</h2>
+            <div className="space-y-1 text-slate-400">
+              <p className="font-murecho">月 ～ 土</p>
+              <p>17:00 - 23:00 (L.O. 22:00)</p>
             </div>
           </div>
           <div>
-            <div>
-              <h2 className="mb-5 text-xl font-medium">Contact</h2>
-              <div className="space-y-3 text-base text-slate-300">
-                <p>☎ 052-937-6252</p>
-                <p>abcdefghijklmn@gmail.com</p>
-                <div className="text-slate-300">
-                  <Link
-                    href="https://www.instagram.com/kurumamichi.noriyan/"
-                    target={"_blank"}
-                  >
-                    <FontAwesomeIcon
-                      className="hover:text-main"
-                      size="xl"
-                      icon={faInstagram}
-                    />
-                  </Link>
-                </div>
+            <h2 className="mb-2.5 text-lg md:text-xl font-medium">Address</h2>
+            <div className="space-y-1 text-slate-400">
+              <p>〒 461-0003</p>
+              <p className="font-murecho">
+                名古屋市東区筒井2-9-8 メゾン車道1階
+              </p>
+            </div>
+          </div>
+          <div>
+            <h2 className="mb-2.5 text-lg md:text-xl font-medium">Contact</h2>
+            <div className="space-y-2 text-slate-400">
+              <p>
+                <span>
+                  <FontAwesomeIcon
+                    className="mr-1"
+                    size="1x"
+                    icon={faSquarePhone}
+                  />
+                </span>
+                {phonenumber.slice(0, 3) +
+                  "-" +
+                  phonenumber.slice(3, 6) +
+                  "-" +
+                  phonenumber.slice(6)}
+              </p>
+              <p>
+                <span>
+                  <FontAwesomeIcon
+                    className="mr-1"
+                    size="1x"
+                    icon={faEnvelope}
+                  />
+                </span>
+                abcdefghijklmn@gmail.com
+              </p>
+              <div className="text-slate-400">
+                <Link
+                  href="https://www.instagram.com/kurumamichi.noriyan/"
+                  target={"_blank"}
+                >
+                  <FontAwesomeIcon
+                    className="hover:text-main"
+                    size="2x"
+                    icon={faInstagram}
+                  />
+                </Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="font-light tracking-wider text-medium text-slate-300">
-          © 2023 <span className="font-murecho">のりやん食堂.</span> All Rights
-          Reserved.
+        <div className="flex items-end h-20 mb-16 md:mb-0">
+          <div className="text-sm font-light tracking-wider text-medium text-slate-300 whitespace-nowrap sm:text-base">
+            © 2023 <span className="font-murecho">のりやん食堂.</span> All
+            Rights Reserved.
+          </div>
         </div>
       </div>
     </footer>
