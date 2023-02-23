@@ -1,9 +1,13 @@
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import { images } from "../constants/images";
-import { useInterval } from "../libs/useInterval";
-import { cls } from "../libs/utils";
+import { useEffect, useState } from "react";
+import { images } from "@constants/images";
+import { cls } from "@libs/utils";
+
+type SliderProps = {
+  component: "notice" | "menu";
+  callback: null | ((index: number) => void);
+};
 
 const variants = {
   enter: (direction: number) => {
@@ -30,32 +34,45 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export default function Slider({ component, width, height }: any) {
-  const timer = 3000;
-  const sliders = images.slider[component];
+export default function Slider({ component, callback = null }: SliderProps) {
+  const intervalTimer = 3000;
+  const swipeTimer = 400;
+  const sliders = images?.slider[component];
   const [[page, direction], setPage] = useState([0, 0]);
+  const [waiting, setWaiting] = useState(false);
   const imageIndex = wrap(0, sliders.length, page);
 
+  useEffect(() => {
+    if (callback) {
+      callback(imageIndex);
+    }
+  }, [callback, imageIndex]);
+
   const paginate = (newDirection: number) => {
+    if (waiting) {
+      return;
+    }
+    setWaiting(true);
     setPage([page + newDirection, newDirection]);
+    setTimeout(() => {
+      setWaiting(false);
+    }, swipeTimer);
   };
 
-  useInterval(() => {
-    paginate(1);
-  }, timer);
-
-  const notice = ["image1", "image2", "image3", "image4", "image5"];
+  // useInterval(() => {
+  //   paginate(1);
+  // }, intervalTimer);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full h-full">
       <div
         className={cls(
-          `relative flex mx-auto overflow-hidden max-w-[${width}rem] h-[${height}rem] bg-zinc-800`
+          `relative flex mx-auto overflow-hidden max-w-7xl h-full bg-transparent`
         )}
       >
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
-            className="absolute w-full h-full"
+            className="absolute w-full h-full overflow-hidden border-2 border-opacity-50 border-slate-300 rounded-4xl"
             key={page}
             custom={direction}
             variants={variants}
@@ -90,6 +107,16 @@ export default function Slider({ component, width, height }: any) {
               quality={100}
               draggable={false}
               priority={true}
+              className="z-10 object-scale-down sm:border-transparent sm:border-2 rounded-4xl"
+            />
+            <Image
+              src={sliders[imageIndex]}
+              alt="slider_image"
+              fill
+              quality={5}
+              draggable={false}
+              priority={true}
+              className="z-0 object-fill border border-transparent blur-2xl rounded-4xl"
             />
           </motion.div>
           <motion.img />
@@ -99,7 +126,7 @@ export default function Slider({ component, width, height }: any) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="absolute z-10 flex items-center justify-center text-white cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 left-1"
+          className="absolute z-10 flex items-center justify-center text-white -translate-y-1/2 cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 left-3"
         >
           <path
             fillRule="evenodd"
@@ -112,7 +139,7 @@ export default function Slider({ component, width, height }: any) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="absolute z-10 flex items-center justify-center text-white cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 right-1"
+          className="absolute z-10 flex items-center justify-center text-white -translate-y-1/2 cursor-pointer opacity-60 hover:opacity-100 w-14 h-14 inset-y-1/2 right-3"
         >
           <path
             fillRule="evenodd"
@@ -120,21 +147,22 @@ export default function Slider({ component, width, height }: any) {
             clipRule="evenodd"
           />
         </svg>
-      </div>
-      <div className="flex items-center justify-center my-5 space-x-1">
-        {[...Array(sliders?.length)].map((_, idx) => (
-          <div
-            key={idx}
-            className={cls(
-              "aspect-square rounded-full w-7 cursor-pointer",
-              idx === imageIndex ? "bg-main" : "bg-slate-500"
-            )}
-            onClick={() => paginate(idx - imageIndex)}
-          ></div>
-        ))}
-      </div>
-      <div className="flex items-center justify-center h-24 text-2xl">
-        {notice[imageIndex]}
+        <div className="absolute bottom-0 z-10 w-full -translate-x-1/2 inset-x-1/2">
+          <div className="flex items-center justify-center my-5 space-x-1">
+            {[...Array(sliders?.length)].map((_, idx) => (
+              <div
+                key={idx}
+                className={cls(
+                  "aspect-square rounded-full border border-slate-100 w-5 cursor-pointer opacity-60",
+                  idx === imageIndex
+                    ? "bg-main opacity-100"
+                    : "bg-slate-300 hover:opacity-100"
+                )}
+                onClick={() => paginate(idx - imageIndex)}
+              ></div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
