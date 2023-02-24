@@ -6,10 +6,10 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: "480px",
+      sm: "640px",
       md: "768px",
-      lg: "976px",
-      xl: "1440px",
+      lg: "1024px",
+      xl: "1280px",
     },
     extend: {
       colors: {
@@ -17,6 +17,11 @@ module.exports = {
         lightmain: "rgb(254, 152, 103)",
         main: "rgb(254, 125, 60)",
         darkmain: "rgb(233, 77, 1)",
+        shallowBlack: "rgba(0,0,0,0.05)",
+      },
+      inset: {
+        photo: "calc(25% - 1.5rem)",
+        photoMobile: "calc(16% - 1.5rem)",
       },
       animation: {
         change: "change 9s cubic-bezier(0.4, 0, 0.6, 1) infinite",
@@ -58,6 +63,8 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       spacing: {
+        112: "28rem",
+        120: "30rem",
         128: "32rem",
         136: "34rem",
         144: "36rem",
@@ -65,13 +72,22 @@ module.exports = {
         172: "44rem",
       },
       fontSize: {
-        infoTime1: ["clamp(0.325rem, 2.5vw, 2rem)"],
+        smclamp: ["clamp(0.75rem, 2.5vw, 0.875rem)"],
+        clamp: ["clamp(0.875rem, 2.5vw, 1rem)"],
+        lgclamp: ["clamp(0.875rem, 2.5vw, 1.125rem)"],
+        xlclamp: ["clamp(1rem, 2.5vw, 1.25rem)"],
+        xl2clamp: ["clamp(1.25rem, 2.5vw, 1.5rem)"],
+        xl3clamp: ["clamp(1.5rem, 2.5vw, 1.875rem)"],
       },
       borderRadius: {
         "4xl": "2rem",
       },
       flex: {
         2: "2 2 0%",
+        3: "3 3 0%",
+      },
+      backgroundSize: {
+        mobile: "768px",
       },
     },
   },

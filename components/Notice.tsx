@@ -13,24 +13,21 @@ export default function Notice({ innerRef }: CommonProps) {
     <article ref={innerRef} className="w-full min-h-fit font-mincho">
       <Subtitle text="NOTICE" />
       <div className="flex flex-col items-center justify-center md:flex-row">
-        <div className="relative md:flex md:p-8 w-full sm:w-5/6 h-128 md:h-[40rem] md:flex-1">
+        <div className="relative md:flex md:p-8 w-full sm:w-5/6 h-112 sm:h-128 px-4 md:h-[40rem] md:flex-3">
           <Slider component="notice" callback={getIndex} />
         </div>
         {imageIndex !== null ? (
-          <div className="relative flex flex-col self-start flex-1 p-8 pt-16">
+          <div className="relative flex flex-col self-start p-8 pt-16 flex-2">
             {imageIndex === 0 ? (
               <>
-                <h2 className="mb-8 text-4xl font-black">
+                <h2 className="mb-10 text-4xl font-black">
                   お持ち帰り用の<span className="text-darkmain">卵サンド</span>
-                  の<br />
-                  ご予約を承っております。
+                  のご予約を承っております。
                 </h2>
                 <div>
                   <p className="mb-8 text-lg font-semibold text-gray-600">
                     のりやん食堂では、自家製の卵サンドをお持ち帰りいただけます。
-                    <br />
                     新鮮な卵をたっぷりと使用することで、フワッフワの食感に仕上がっております。
-                    <br />
                     ぜひ、一度ご賞味ください。
                   </p>
                 </div>
@@ -55,8 +52,8 @@ export default function Notice({ innerRef }: CommonProps) {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <div className="hidden text-2xl md:block">
-                        &nbsp;052-937-6252
+                      <div className="hidden ml-1 text-2xl md:block">
+                        052-937-6252
                       </div>
                     </div>
                   </Link>

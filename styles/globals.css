@@ -1,10 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Murecho:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .main-gradient-to-bottom {
     background: linear-gradient(
       to bottom,
@@ -18,24 +22,19 @@
 
   .main-mb-gradient-to-bottom {
     background: linear-gradient(
-      to bottom,
+      to bottom right,
       rgba(254, 125, 60, 1) 0%,
-      rgba(254, 125, 60, 0.75) 40%,
-      rgba(254, 125, 60, 0.5) 60%,
-      rgba(254, 125, 60, 0.25) 80%,
-      rgba(254, 125, 60, 0) 100%
+      rgba(254, 125, 60, 0.75) 50%,
+      rgba(254, 125, 60, 0.5) 75%,
+      rgba(254, 125, 60, 0.25) 100%
     );
   }
 
-  .white-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
-    background-color: white;
-    opacity: 0.4;
+  .boss-image {
+    background-image: url("https://norisang-project.s3.ap-northeast-1.amazonaws.com/about_restaurant_bosses01.jpg");
   }
 
-  .white-circle:hover {
-    opacity: 0.8;
+  .photogallery {
+    background-image: url("https://norisang-project.s3.ap-northeast-1.amazonaws.com/photo_restaurant_background.jpg");
   }
 }

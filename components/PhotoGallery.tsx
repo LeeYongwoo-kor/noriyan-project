@@ -48,7 +48,7 @@ export default function PhotoGallery({ innerRef }: any) {
           >
             <motion.div
               layoutId={selectedPhoto?.id}
-              className="fixed w-1/2 top-1/4 md:top-photo left-1/4 bg-shallowBlack"
+              className="fixed w-[96%] top-photoMobile left-[2%] md:w-2/3 md:left-[16%] lg:w-1/2 md:top-photo lg:left-1/4 bg-shallowBlack"
             >
               <div className="relative w-full h-128">
                 <Image
@@ -67,11 +67,11 @@ export default function PhotoGallery({ innerRef }: any) {
       </AnimatePresence>
       <article
         ref={innerRef}
-        className="w-full px-8 pt-1 pb-32 mt-32 bg-fixed bg-center bg-no-repeat bg-cover shadow-md min-h-fit photogallery"
+        className="w-full px-2 pt-1 pb-32 mt-32 bg-fixed bg-center bg-no-repeat bg-cover shadow-md lg:px-8 min-h-fit photogallery"
       >
         <div className="mx-auto max-w-7xl">
           <Subtitle text="PHOTO GALLERY" color="WHITE" />
-          <div className="mt-8 grid w-full gap-2 grid-cols-4 h-[44rem] [&>div]:cursor-pointer">
+          <div className="mt-8 grid w-full gap-2 grid-cols-2 h-[60rem] sm:h-[72rem] lg:grid-cols-4 lg:h-172 [&>div]:cursor-pointer">
             {images.photoGallery.map((photo) => (
               <motion.div
                 onClick={() => handleClickPhoto(photo.id)}
