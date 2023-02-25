@@ -119,19 +119,18 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
           target={"_blank"}
           className="inline-flex flex-col items-center px-4 py-2 font-medium transition-colors border-2 rounded-md shadow-sm cursor-pointer border-slate-400 hover:bg-slate-200"
         >
-          <p className="flex items-center justify-center text-slate-500 font-murecho">
+          <p className="flex items-center justify-center text-xs sm:text-sm md:text-base text-slate-400 font-murecho">
             売り切れの情報確認へ
           </p>
         </Link>
       </Subtitle>
-      <div className="flex items-center justify-center m-8"></div>
       <div className="flex flex-col items-center justify-center">
-        <div className="flex justify-center w-full space-x-2">
+        <div className="flex justify-center w-full space-x-0.5 text-sm font-bold sm:space-x-2 md:text-lg">
           {category.map((kinds, idx) => (
             <button
               onClick={() => handleClickKinds(idx)}
               className={cls(
-                "px-4 py-2 text-lg font-bold transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
+                "px-4 py-2 transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
                 selectedKinds === idx
                   ? "text-white bg-highlight border-transparent"
                   : "border-main border-2 [&>svg]:text-darkmain"
@@ -139,7 +138,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
               key={idx}
             >
               <FontAwesomeIcon
-                className={cls("mr-3")}
+                className={cls("mr-2 md:mr-3")}
                 size="1x"
                 icon={categoryIcon[idx]}
               />
@@ -149,7 +148,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
         </div>
         <div className="w-full">
           <ul>
-            <li className="my-8 space-x-3 space-y-3 text-sm">
+            <li className="mt-4 space-x-2 space-y-2 overflow-x-auto text-xs no-scroll whitespace-nowrap mobile:whitespace-normal sm:text-sm">
               {subArr[selectedKinds]?.map((subItem: string, idx: number) => (
                 <button
                   onClick={() => handleClickSub(selectedKinds, idx)}
@@ -169,7 +168,12 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
               ))}
             </li>
           </ul>
-          <ul className="grid w-full grid-cols-2 gap-8">
+          {subArr[selectedKinds]?.length > 3 ? (
+            <div className="mt-1 text-xs text-slate-300 mobile:hidden">
+              ※スライド操作で選択できます。
+            </div>
+          ) : null}
+          <ul className="grid w-full grid-cols-2 gap-2 mt-7 mobile:grid-cols-3 md:grid-cols-2 md:gap-8">
             {showMore[selectedKinds][
               selectedSub[category[selectedKinds] as keyof ISubMenu]
             ]
@@ -187,7 +191,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
           ] && subMenu?.length > showMax ? (
             <div
               onClick={handleClickShowMore}
-              className="flex items-center justify-center w-full mt-8 cursor-pointer h-14 bg-slate-200 hover:bg-slate-300 rounded-xl"
+              className="flex items-center justify-center w-full mt-4 cursor-pointer h-14 bg-slate-200 hover:bg-slate-300 rounded-xl"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
