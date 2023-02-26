@@ -1,5 +1,5 @@
 import { IMenu } from "@data/menu";
-import Image from "next/image";
+import CustomImage from "./CustomImage";
 
 type MenuAllDisplayProps = {
   dish: IMenu;
@@ -36,7 +36,7 @@ export default function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
   return (
     <li className="flex flex-col items-center justify-start md:flex-row">
       <div className="relative w-full h-48 sm:w-44 aspect-square">
-        <Image
+        <CustomImage
           alt={dish.name}
           className="object-cover w-full rounded-3xl"
           src={dish.imageUrl}
