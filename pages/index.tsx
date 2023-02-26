@@ -2,35 +2,17 @@ import About from "@components/About";
 import Access from "@components/Access";
 import Footer from "@components/Footer";
 import Info from "@components/Info";
-import Menu from "@components/Menu";
+import Loading from "@components/Loading";
+import Max7XLScreen from "@components/Max7XLScreen";
 import Navbar from "@components/Navbar";
-import NavbarMobile from "@components/NavbarMobile";
 import Notice from "@components/Notice";
 import PhotoGallery from "@components/PhotoGallery";
+import { IMenu } from "@data/menu";
+import { useDebounce } from "@hooks/useDebounce";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-
-export type Kinds = "home" | "notice" | "concept" | "menu" | "info" | "access";
-
-interface IUrlHash {
-  home: number;
-  notice: number;
-  concept: number;
-  menu: number;
-  info: number;
-  access: number;
-}
-
-const positionMap: IUrlHash = {
-  home: 0,
-  notice: 0,
-  concept: 0,
-  menu: 0,
-  info: 0,
-  access: 0,
-};
+import { useEffect, useRef, useState } from "react";
+import { IPositionInfo } from "types";
 
 function isMobile(userAgent: string) {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -38,143 +20,117 @@ function isMobile(userAgent: string) {
   );
 }
 
-const Main = dynamic(() => import("../components/Main"), {
+const Main = dynamic(() => import("@components/Main"), {
   suspense: true,
   ssr: false,
+  loading: () => <Loading />,
+});
+
+const Menu = dynamic(() => import("@components/Menu"), {
+  suspense: true,
+  ssr: false,
+  loading: () => <Loading />,
 });
 
 function Home({ userAgent, menu }: any) {
-  const [showNavBar, setShowNavbar] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [position, setPosition] = useState("home");
-  const [throttle, setThrottle] = useState(false);
-  // const menuInfo = useRef(menu);
+  const [screenWidth, setScreenWidth] = useState<number | null>(null);
+  const [positionInfo, setPositionInfo] = useState<IPositionInfo>({
+    home: 0,
+    about: 0,
+    notice: 0,
+    menu: 0,
+    photoGallery: 0,
+    info: 0,
+    access: 0,
+  });
 
-  const navHeight = isMobile(userAgent) ? 0 : 40;
+  const aboutRef = useRef<HTMLInputElement | null>(null);
+  const noticeRef = useRef<HTMLInputElement | null>(null);
+  const menuRef = useRef<HTMLInputElement | null>(null);
+  const photoGalleryRef = useRef<HTMLInputElement | null>(null);
+  const accessRef = useRef<HTMLInputElement | null>(null);
+  const infoRef = useRef<HTMLInputElement | null>(null);
 
-  const { scrollY } = useScroll();
-
-  // useMotionValueEvent(scrollY, "change", (scroll) => {
-  //   console.log("Page scroll ", scroll);
-  // });
-
-  const handleScroll = () => {
-    // with throttling
-    if (throttle) return;
-    if (!throttle) {
-      setThrottle(true);
-      setTimeout(() => {
-        const position = window.scrollY;
-        setScrollPosition(position);
-        setThrottle(false);
-      }, 500);
-    }
-  };
-
-  const handleMoveScreen = (position: string) => {
-    const movePosition = positionMap[position] - navHeight * 2;
-
-    window.scroll({
-      top: movePosition,
-      behavior: "smooth",
-    });
+  const handleCallbackMenu = () => {
+    setPositionInfo(() => ({
+      home: 0,
+      about: aboutRef.current?.offsetTop || 0,
+      notice: noticeRef.current?.offsetTop || 0,
+      menu: menuRef.current?.offsetTop || 0,
+      photoGallery: photoGalleryRef.current?.offsetTop || 0,
+      access: accessRef.current?.offsetTop || 0,
+      info: infoRef.current?.offsetTop || 0,
+    }));
   };
 
   useEffect(() => {
-    console.log(scrollPosition);
-    if (scrollPosition >= 100) {
-      setShowNavbar(true);
-    } else {
-      setShowNavbar(false);
-    }
+    const updatePositionInfo = () => {
+      setPositionInfo(() => ({
+        home: 0,
+        about: aboutRef.current?.offsetTop || 0,
+        notice: noticeRef.current?.offsetTop || 0,
+        menu: menuRef.current?.offsetTop || 0,
+        photoGallery: photoGalleryRef.current?.offsetTop || 0,
+        access: accessRef.current?.offsetTop || 0,
+        info: infoRef.current?.offsetTop || 0,
+      }));
+      setScreenWidth(window && window.innerWidth);
+    };
 
-    if (
-      scrollPosition >= positionMap.concept &&
-      scrollPosition < positionMap.menu - navHeight * 2
-    ) {
-      setPosition("concept");
-    } else if (
-      scrollPosition >= positionMap.menu - navHeight * 2 &&
-      scrollPosition < positionMap.info - navHeight * 2
-    ) {
-      setPosition("menu");
-    } else if (
-      scrollPosition >= positionMap.info - navHeight * 2 &&
-      scrollPosition < positionMap.access - navHeight * 2
-    ) {
-      setPosition("info");
-    } else if (scrollPosition >= positionMap.access - navHeight * 2) {
-      setPosition("access");
-    } else {
-      setPosition("home");
-    }
-  }, [scrollPosition, navHeight]);
+    updatePositionInfo();
 
-  const noticeRef = useRef<HTMLInputElement>();
-  const conceptRef = useRef<HTMLInputElement>();
-  const menuRef = useRef<HTMLInputElement>();
-  const infoRef = useRef<HTMLInputElement>();
-  const accessRef = useRef<HTMLInputElement>();
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    positionMap.notice = noticeRef.current?.getBoundingClientRect().top || 0;
-    positionMap.concept = conceptRef.current?.getBoundingClientRect().top || 0;
-    positionMap.access = accessRef.current?.getBoundingClientRect().top || 0;
-    positionMap.menu = menuRef.current?.getBoundingClientRect().top || 0;
-    positionMap.info = infoRef.current?.getBoundingClientRect().top || 0;
+    window.addEventListener("resize", updatePositionInfo);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updatePositionInfo);
     };
-  }, []);
+  }, [
+    aboutRef,
+    noticeRef,
+    menuRef,
+    photoGalleryRef,
+    accessRef,
+    infoRef,
+    positionInfo.menu,
+  ]);
 
   return (
     <>
       <Head>
         <title>車道のりやん食堂</title>
-        <meta name="description" content="Generated by create next app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="車道のりやん食堂" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+        />
         <link rel="favicon" href="/favicon.ico" />
       </Head>
-      <main className="font-murecho bg-[#ffffff]">
-        <div id="wrapper" className="relative w-full h-auto mx-auto">
-          <Navbar
-            showNavBar={showNavBar}
-            position={position}
-            onClickCallback={handleMoveScreen}
-          >
-            <Suspense
-              fallback={
-                <div className="absolute inset-0 text-5xl">Loading...</div>
-              }
-            >
-              <Main />
-            </Suspense>
-            <div className="sm:h-[54rem] h-144"></div>
-            <Suspense fallback={<div>Loading Contents...</div>}>
-              <div className="flex flex-col items-center justify-center w-full px-8 mx-auto max-w-7xl">
-                <About innerRef={conceptRef} />
-                <Notice innerRef={noticeRef} />
-              </div>
-              <div className="w-full mt-32 mb-10 bg-fixed bg-center bg-no-repeat bg-cover h-128 boss-image"></div>
-              <div className="flex flex-col items-center justify-center w-full px-8 mx-auto max-w-7xl">
-                <Menu innerRef={menuRef} menu={menu} />
-              </div>
-              <PhotoGallery />
-              <div className="flex flex-col items-center justify-center w-full px-8 mx-auto max-w-7xl">
-                <Access innerRef={accessRef} />
-                <Info innerRef={infoRef} />
-              </div>
-            </Suspense>
+      <main className="font-murecho bg-[#ffffff] select-none">
+        <div id="wrapper" className="relative w-full">
+          <Navbar position={positionInfo} screenWidth={screenWidth}>
+            {/* <Suspense fallback={<div>Loading</div>}> */}
+            <Main position={positionInfo} />
+            {/* </Suspense> */}
+            <div className="sm:h-[56rem] md:h-[53rem] h-[31rem]"></div>
+            <Max7XLScreen>
+              <About innerRef={aboutRef} />
+              <Notice innerRef={noticeRef} />
+            </Max7XLScreen>
+            <div className="w-full mt-32 mb-10 bg-fixed bg-left bg-no-repeat xl:bg-center bg-mobile sm:bg-auto xl:bg-cover h-96 sm:h-120 boss-image"></div>
+            <Max7XLScreen>
+              <Menu
+                innerRef={menuRef}
+                menu={menu}
+                callbackPosition={handleCallbackMenu}
+              />
+            </Max7XLScreen>
+            <PhotoGallery innerRef={photoGalleryRef} />
+            <Max7XLScreen>
+              <Access innerRef={accessRef} />
+              <Info innerRef={infoRef} />
+            </Max7XLScreen>
             <Footer />
           </Navbar>
-          <NavbarMobile
-            hasTabBar
-            position={position}
-            onClickCallback={handleMoveScreen}
-          />
         </div>
       </main>
     </>
@@ -188,13 +144,13 @@ function Home({ userAgent, menu }: any) {
 
 export async function getStaticProps() {
   const res = await fetch("http://localhost:3000/api/menu");
-  const menu = await res.json();
+  const menu: IMenu[] = await res.json();
 
   return {
     props: {
       menu,
     },
-    // revalidate: 86400,
+    revalidate: 86400,
   };
 }
 
