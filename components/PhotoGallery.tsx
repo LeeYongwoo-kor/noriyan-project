@@ -58,7 +58,6 @@ export default function PhotoGallery({ innerRef }: any) {
                   className="object-contain"
                   quality={100}
                   draggable={false}
-                  priority={true}
                 />
               </div>
             </motion.div>
@@ -87,7 +86,6 @@ export default function PhotoGallery({ innerRef }: any) {
                   className="object-cover"
                   quality={100}
                   draggable={false}
-                  priority={true}
                 />
               </motion.div>
             ))}

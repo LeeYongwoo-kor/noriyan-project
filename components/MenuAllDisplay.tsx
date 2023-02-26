@@ -41,7 +41,6 @@ export default function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
           className="object-cover w-full rounded-3xl"
           src={dish.imageUrl}
           fill
-          priority={true}
         />
       </div>
       <div className="px-3 py-4 font-semibold md:px-6 md:py-10 lg:px-10">

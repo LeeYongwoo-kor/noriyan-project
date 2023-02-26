@@ -28,7 +28,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="relative w-full p-10">
@@ -53,7 +52,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover opacity-10"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
       </div>
@@ -66,7 +64,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="border-2 border-lightmain"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="flex flex-col items-center justify-center m-5 font-semibold sm:m-8 md:m-12">
@@ -96,7 +93,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="relative w-full">
@@ -107,7 +103,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="relative w-full">
@@ -118,7 +113,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
       </div>
@@ -131,7 +125,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="relative w-full">
@@ -142,7 +135,6 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
       </div>
@@ -196,7 +188,6 @@ export default function Info({ innerRef }: CommonProps) {
             fill
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
       </div>

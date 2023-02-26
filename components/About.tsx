@@ -16,7 +16,6 @@ export default function About({ innerRef }: CommonProps) {
             className="object-cover"
             quality={100}
             draggable={false}
-            priority={true}
           />
         </div>
         <div className="w-full px-8 py-14 md:px-0 md:w-160 font-mincho">
@@ -53,7 +52,6 @@ export default function About({ innerRef }: CommonProps) {
               className="object-cover"
               quality={100}
               draggable={false}
-              priority={true}
             />
           </div>
           <div className="relative w-full">
@@ -64,7 +62,6 @@ export default function About({ innerRef }: CommonProps) {
               className="object-cover"
               quality={100}
               draggable={false}
-              priority={true}
             />
           </div>
           <div className="relative w-full">
@@ -75,7 +72,6 @@ export default function About({ innerRef }: CommonProps) {
               className="object-cover"
               quality={100}
               draggable={false}
-              priority={true}
             />
           </div>
           <div className="relative w-full col-span-2 sm:row-span-2">
@@ -86,7 +82,6 @@ export default function About({ innerRef }: CommonProps) {
               className="object-cover"
               quality={100}
               draggable={false}
-              priority={true}
             />
           </div>
         </div>

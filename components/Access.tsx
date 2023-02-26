@@ -70,7 +70,6 @@ export default function Access({ innerRef }: CommonProps) {
                 fill
                 className="object-fill"
                 draggable={false}
-                priority={true}
               />
             </span>
             桜通線「車道駅」1番出口より
@@ -87,7 +86,6 @@ export default function Access({ innerRef }: CommonProps) {
                 fill
                 className="object-fill"
                 draggable={false}
-                priority={true}
               />
             </span>
             東山線「千種駅」1番出口より

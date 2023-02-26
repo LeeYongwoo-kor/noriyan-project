@@ -113,7 +113,6 @@ export default function Slider({
               fill
               quality={100}
               draggable={false}
-              priority={true}
               className="z-10 object-scale-down sm:border-transparent sm:border-2 rounded-4xl"
             />
             <Image
@@ -122,7 +121,6 @@ export default function Slider({
               fill
               quality={5}
               draggable={false}
-              priority={true}
               className="z-0 object-fill border border-transparent blur-2xl rounded-4xl"
             />
           </motion.div>
