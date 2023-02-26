@@ -63,26 +63,28 @@ function Home({ userAgent, menu }: any) {
     }));
   };
 
+  const handleResize = () => {
+    setPositionInfo(() => ({
+      home: 0,
+      about: aboutRef.current?.offsetTop || 0,
+      notice: noticeRef.current?.offsetTop || 0,
+      menu: menuRef.current?.offsetTop || 0,
+      photoGallery: photoGalleryRef.current?.offsetTop || 0,
+      access: accessRef.current?.offsetTop || 0,
+      info: infoRef.current?.offsetTop || 0,
+    }));
+    setScreenWidth(window && window.innerWidth);
+  };
+
+  const debouncedHandleResize = useDebounce(handleResize, 500);
+
   useEffect(() => {
-    const updatePositionInfo = () => {
-      setPositionInfo(() => ({
-        home: 0,
-        about: aboutRef.current?.offsetTop || 0,
-        notice: noticeRef.current?.offsetTop || 0,
-        menu: menuRef.current?.offsetTop || 0,
-        photoGallery: photoGalleryRef.current?.offsetTop || 0,
-        access: accessRef.current?.offsetTop || 0,
-        info: infoRef.current?.offsetTop || 0,
-      }));
-      setScreenWidth(window && window.innerWidth);
-    };
+    debouncedHandleResize();
 
-    updatePositionInfo();
-
-    window.addEventListener("resize", updatePositionInfo);
+    window.addEventListener("resize", debouncedHandleResize);
 
     return () => {
-      window.removeEventListener("resize", updatePositionInfo);
+      window.removeEventListener("resize", debouncedHandleResize);
     };
   }, [
     aboutRef,
