@@ -17,10 +17,10 @@ export default function Notice({ innerRef }: CommonProps) {
           <Slider component="notice" callback={getIndex} />
         </div>
         {imageIndex !== null ? (
-          <div className="relative flex flex-col self-start p-8 pt-16 flex-2">
+          <div className="relative flex flex-col self-start p-8 md:pt-16 flex-2">
             {imageIndex === 0 ? (
               <>
-                <h2 className="mb-10 text-4xl font-black">
+                <h2 className="mb-10 text-2xl font-semibold font-murecho">
                   お持ち帰り用の<span className="text-darkmain">卵サンド</span>
                   のご予約を承っております。
                 </h2>
@@ -31,10 +31,10 @@ export default function Notice({ innerRef }: CommonProps) {
                     ぜひ、一度ご賞味ください。
                   </p>
                 </div>
-                <div>
+                <div className="w-full">
                   <Link
                     href={`tel:000`}
-                    className="inline-flex flex-col items-center px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
+                    className="inline-flex flex-col items-center w-full px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
                   >
                     <div className="self-start text-sm font-bold">
                       予約はこちら

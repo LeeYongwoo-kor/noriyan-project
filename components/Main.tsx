@@ -1,7 +1,7 @@
+import { images } from "@constants/images";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cls } from "@libs/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { IPositionInfo, NavbarTypes } from "types";
@@ -24,16 +24,16 @@ export default function Main({ position }: MainProps) {
     <div className="absolute inset-0 min-h-fit sm:h-[60rem] h-144">
       <div className="relative h-full">
         <Image
-          src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/main_restaurant_2_hosei.jpg"
-          alt="main_image_2"
+          src={images?.main[0]?.src}
+          alt={images?.main[0]?.alt}
           fill
           quality={100}
           priority={true}
           className="absolute object-cover brightness-90 bg-gradient-to-b from-transparent to-black"
         />
         <Image
-          src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/main_restaurant_3_hosei.jpg"
-          alt="main_image_3"
+          src={images?.main[1]?.src}
+          alt={images?.main[1]?.alt}
           fill
           quality={100}
           priority={true}

@@ -3,10 +3,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { images } from "@constants/images";
 import { cls } from "@libs/utils";
+import { useInterval } from "@hooks/useInterval";
 
 type SliderProps = {
   component: "notice" | "menu";
-  callback: null | ((index: number) => void);
+  intervalTimer?: number | undefined;
+  callback?: (index: number) => void;
 };
 
 const variants = {
@@ -34,8 +36,11 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export default function Slider({ component, callback = null }: SliderProps) {
-  const intervalTimer = 3000;
+export default function Slider({
+  component,
+  intervalTimer,
+  callback,
+}: SliderProps) {
   const swipeTimer = 400;
   const sliders = images?.slider[component];
   const [[page, direction], setPage] = useState([0, 0]);
@@ -59,9 +64,11 @@ export default function Slider({ component, callback = null }: SliderProps) {
     }, swipeTimer);
   };
 
-  // useInterval(() => {
-  //   paginate(1);
-  // }, intervalTimer);
+  useInterval(() => {
+    if (intervalTimer) {
+      paginate(1);
+    }
+  }, intervalTimer);
 
   return (
     <div className="relative w-full h-full">
@@ -101,8 +108,8 @@ export default function Slider({ component, callback = null }: SliderProps) {
             }}
           >
             <Image
-              src={sliders[imageIndex]}
-              alt="slider_image"
+              src={sliders[imageIndex]?.src}
+              alt={sliders[imageIndex]?.alt}
               fill
               quality={100}
               draggable={false}
@@ -110,8 +117,8 @@ export default function Slider({ component, callback = null }: SliderProps) {
               className="z-10 object-scale-down sm:border-transparent sm:border-2 rounded-4xl"
             />
             <Image
-              src={sliders[imageIndex]}
-              alt="slider_image"
+              src={sliders[imageIndex]?.src}
+              alt={sliders[imageIndex]?.alt}
               fill
               quality={5}
               draggable={false}

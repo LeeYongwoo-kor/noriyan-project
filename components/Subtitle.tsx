@@ -15,28 +15,31 @@ export default function Subtitle({
   children,
 }: SubtitleProps) {
   return (
-    <div className="relative flex flex-col items-center justify-center mt-24 mb-12 font-poppins">
+    <div className="relative flex flex-col items-center justify-center mt-16 mb-8 md:mt-20 md:mb-10 font-poppins">
       <hr className="h-5 border-t-[3px] border-main w-40" />
       <div className="relative">
         <h2
           className={cls(
-            "relative z-10 text-4xl font-extrabold",
+            "relative z-10 text-3xl md:text-4xl font-extrabold",
             color === "WHITE" ? "text-white" : "text-black"
           )}
         >
           {text}
         </h2>
-        <h2 className="absolute text-4xl font-bold opacity-10 whitespace-nowrap inset-1">
+        <h2 className="absolute text-3xl font-bold md:text-4xl opacity-10 whitespace-nowrap inset-1">
           {text}
         </h2>
-        <h2 className="absolute text-4xl font-bold opacity-5 whitespace-nowrap inset-2">
+        <h2 className="absolute text-3xl font-bold md:text-4xl opacity-5 whitespace-nowrap inset-2">
           {text}
         </h2>
       </div>
       {description && description.length !== 0 ? (
-        <div className="flex flex-col items-center justify-start w-full mt-4 font-mincho">
+        <div className="flex flex-col items-center justify-center w-5/6 mt-4 font-mincho">
           {description.map((sentence: string, idx) => (
-            <p key={idx} className="font-semibold text-gray-600 text-md">
+            <p
+              key={idx}
+              className="text-xs font-semibold text-center text-gray-600 sm:text-sm md:text-base"
+            >
               {sentence}
             </p>
           ))}

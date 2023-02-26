@@ -1,12 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import Link from "next/link";
 import { phonenumber } from "@constants/common";
-import {
-  faEnvelope,
-  faMobilePhone,
-  faSquarePhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope, faSquarePhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -32,7 +28,7 @@ export default function Footer() {
           <div>
             <h2 className="mb-2.5 text-lg md:text-xl font-medium">Service</h2>
             <div className="space-y-1 text-slate-400">
-              <p className="font-murecho">月 ～ 土</p>
+              <p className="font-murecho">月 ～ 土（不定休あり）</p>
               <p>17:00 - 23:00 (L.O. 22:00)</p>
             </div>
           </div>

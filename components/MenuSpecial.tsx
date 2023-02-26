@@ -53,14 +53,14 @@ export default function MenuSpecial() {
         <Slider component="menu" callback={getIndex} />
       </div>
       {imageIndex !== null ? (
-        <div className="flex flex-col w-[95%] md:w-4/5 h-64 p-8 mx-auto lg:w-3/5 min-h-fit">
+        <div className="flex flex-col w-[95%] md:w-4/5 h-64 px-4 sm:px-8 py-8 mx-auto lg:w-3/5">
           {imageIndex === 0 ? (
-            <>
+            <div className="w-full min-h-fit">
               <div className="flex items-end justify-start w-full">
                 <h2 className="text-3xl font-extrabold sm:text-4xl">
                   からすみ餅
                 </h2>
-                <h3 className="ml-5 text-xl font-semibold sm:text-2xl text-main font-murecho">
+                <h3 className="ml-5 text-lg font-semibold sm:text-2xl text-main font-murecho">
                   ￥1,200<span className="md:text-sm">（税込）</span>
                 </h3>
               </div>
@@ -74,7 +74,7 @@ export default function MenuSpecial() {
                 ほんのりと焼色がつくほどに焙っていただき、お召し上がりください。
                 お雑煮にいれていただくと格別の風味がございます。
               </p>
-            </>
+            </div>
           ) : null}
         </div>
       ) : null}

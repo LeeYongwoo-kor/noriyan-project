@@ -130,7 +130,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
             <button
               onClick={() => handleClickKinds(idx)}
               className={cls(
-                "px-4 py-2 transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
+                "flex justify-center items-center px-4 py-2 transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
                 selectedKinds === idx
                   ? "text-white bg-highlight border-transparent"
                   : "border-main border-2 [&>svg]:text-darkmain"
@@ -148,7 +148,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
         </div>
         <div className="w-full">
           <ul>
-            <li className="mt-4 space-x-2 space-y-2 overflow-x-auto text-xs no-scroll whitespace-nowrap mobile:whitespace-normal sm:text-sm">
+            <li className="mt-1 space-x-2 space-y-2 overflow-x-auto text-xs mobile:mt-2 md:mt-4 no-scroll whitespace-nowrap mobile:whitespace-normal sm:text-sm">
               {subArr[selectedKinds]?.map((subItem: string, idx: number) => (
                 <button
                   onClick={() => handleClickSub(selectedKinds, idx)}
@@ -191,7 +191,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
           ] && subMenu?.length > showMax ? (
             <div
               onClick={handleClickShowMore}
-              className="flex items-center justify-center w-full mt-4 cursor-pointer h-14 bg-slate-200 hover:bg-slate-300 rounded-xl"
+              className="flex items-center justify-center w-full mt-4 cursor-pointer md:mt-6 h-14 bg-slate-200 hover:bg-slate-300 rounded-xl"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +199,7 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-8 h-8 text-slate-400"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-slate-400"
               >
                 <path
                   strokeLinecap="round"
@@ -207,7 +207,9 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
                   d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"
                 />
               </svg>
-              <div className="ml-3 text-lg text-slate-400">Show more</div>
+              <div className="ml-3 text-sm sm:text-base md:text-lg text-slate-400">
+                Show more
+              </div>
             </div>
           ) : null}
         </div>

@@ -67,7 +67,7 @@ export default function PhotoGallery({ innerRef }: any) {
       </AnimatePresence>
       <article
         ref={innerRef}
-        className="w-full px-2 pt-1 pb-32 mt-32 bg-fixed bg-center bg-no-repeat bg-cover shadow-md lg:px-8 min-h-fit photogallery"
+        className="w-full px-3 pt-1 pb-16 mt-16 bg-scroll bg-center bg-no-repeat bg-cover shadow-md sm:pb-32 sm:bg-fixed lg:px-8 min-h-fit photogallery"
       >
         <div className="mx-auto max-w-7xl">
           <Subtitle text="PHOTO GALLERY" color="WHITE" />

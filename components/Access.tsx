@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
 import { faTrainSubway, faWalking } from "@fortawesome/free-solid-svg-icons";
-
-import Subtitle from "./Subtitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { CommonProps } from "types/CommonProps";
+import Subtitle from "./Subtitle";
 
-export default function Access({ innerRef }: any) {
+export default function Access({ innerRef }: CommonProps) {
   const [thisNavigator, setNavigator] = useState<string[]>(["ja", "ja"]);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function Access({ innerRef }: any) {
       </div>
       <div className="relative w-full sm:hidden">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52178.97377219232!2d136.86677429675197!3d35.17691986846774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600371319b5aab7f%3A0xbc7b858318f7c0e5!2z6LuK6YGT44Gu44KK44KE44KT6aOf5aCC!5e0!3m2!1sko!2sjp!4v1673533486214!5m2!1sko!2sjp"
+          src={`https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5484.908676762326!2d136.9251555885441!3d35.17292260757658!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600371319b5aab7f%3A0xbc7b858318f7c0e5!2z6LuK6YGT44Gu44KK44KE44KT6aOf5aCC!5e0!3m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}!4v1676041624166!5m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}`}
           height="440"
           style={{ border: 0 }}
           allowFullScreen={false}
@@ -65,8 +65,8 @@ export default function Access({ innerRef }: any) {
           <p className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
-                src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/sakura-dori_logo.png"
-                alt="higashi-yama_logo"
+                src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/sakura-dori_logo.png`}
+                alt="sakura_dori_logo"
                 fill
                 className="object-fill"
                 draggable={false}
@@ -82,7 +82,7 @@ export default function Access({ innerRef }: any) {
           <p className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
-                src="https://norisang-project.s3.ap-northeast-1.amazonaws.com/higashi-yama_logo.png"
+                src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/higashi-yama_logo.png`}
                 alt="higashi-yama_logo"
                 fill
                 className="object-fill"

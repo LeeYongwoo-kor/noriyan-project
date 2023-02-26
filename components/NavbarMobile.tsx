@@ -49,8 +49,6 @@ export default function NavbarMobile({
     setCurrPosition(currentPosition ? currentPosition[0] : "home");
   });
 
-  console.log("NavMobile");
-
   return (
     <div className={cls("md:hidden")}>
       <nav
@@ -64,7 +62,7 @@ export default function NavbarMobile({
           className={cls(
             "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("notice") > -1
-              ? "text-orange-900"
+              ? "text-yellow-300"
               : "hover:text-white"
           )}
         >
@@ -76,7 +74,7 @@ export default function NavbarMobile({
           className={cls(
             "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("menu") > -1
-              ? "text-orange-900"
+              ? "text-yellow-300"
               : "hover:text-white"
           )}
         >
@@ -98,7 +96,7 @@ export default function NavbarMobile({
           className={cls(
             "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("photoGallery") > -1
-              ? "text-orange-900"
+              ? "text-yellow-300"
               : "hover:text-white"
           )}
         >
@@ -110,7 +108,7 @@ export default function NavbarMobile({
           className={cls(
             "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("access") > -1
-              ? "text-orange-900"
+              ? "text-yellow-300"
               : "hover:text-white"
           )}
         >
@@ -133,7 +131,7 @@ export default function NavbarMobile({
           className={cls(
             "flex flex-col flex-grow justify-between items-center space-y-2 transition-colors",
             currPosition.indexOf("info") > -1
-              ? "text-orange-900"
+              ? "text-yellow-300"
               : " hover:text-white"
           )}
         >
