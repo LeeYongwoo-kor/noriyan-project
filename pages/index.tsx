@@ -11,14 +11,9 @@ import { IMenu } from "@data/menu";
 import { useDebounce } from "@hooks/useDebounce";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IPositionInfo } from "types";
-
-function isMobile(userAgent: string) {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    userAgent
-  );
-}
 
 const Main = dynamic(() => import("@components/Main"), {
   suspense: true,
@@ -32,7 +27,13 @@ const Menu = dynamic(() => import("@components/Menu"), {
   loading: () => <Loading />,
 });
 
-function Home({ userAgent, menu }: any) {
+type HomeProps = {
+  menu: IMenu[];
+};
+
+const opts: AddEventListenerOptions & EventListenerOptions = { passive: true };
+
+function Home({ menu }: HomeProps) {
   const [screenWidth, setScreenWidth] = useState<number | null>(null);
   const [positionInfo, setPositionInfo] = useState<IPositionInfo>({
     home: 0,
@@ -51,7 +52,7 @@ function Home({ userAgent, menu }: any) {
   const accessRef = useRef<HTMLInputElement | null>(null);
   const infoRef = useRef<HTMLInputElement | null>(null);
 
-  const handleCallbackMenu = () => {
+  const handleCallbackMenu = useCallback(() => {
     setPositionInfo(() => ({
       home: 0,
       about: aboutRef.current?.offsetTop || 0,
@@ -61,9 +62,9 @@ function Home({ userAgent, menu }: any) {
       access: accessRef.current?.offsetTop || 0,
       info: infoRef.current?.offsetTop || 0,
     }));
-  };
+  }, []);
 
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     setPositionInfo(() => ({
       home: 0,
       about: aboutRef.current?.offsetTop || 0,
@@ -74,17 +75,17 @@ function Home({ userAgent, menu }: any) {
       info: infoRef.current?.offsetTop || 0,
     }));
     setScreenWidth(window && window.innerWidth);
-  };
+  }, []);
 
   const debouncedHandleResize = useDebounce(handleResize, 500);
 
   useEffect(() => {
     debouncedHandleResize();
 
-    window.addEventListener("resize", debouncedHandleResize);
+    window.addEventListener("resize", debouncedHandleResize, opts);
 
     return () => {
-      window.removeEventListener("resize", debouncedHandleResize);
+      window.removeEventListener("resize", debouncedHandleResize, opts);
     };
   }, [
     aboutRef,
@@ -110,9 +111,7 @@ function Home({ userAgent, menu }: any) {
       <main className="font-murecho bg-[#ffffff] select-none">
         <div id="wrapper" className="relative w-full">
           <Navbar position={positionInfo} screenWidth={screenWidth}>
-            {/* <Suspense fallback={<div>Loading</div>}> */}
             <Main position={positionInfo} />
-            {/* </Suspense> */}
             <div className="sm:h-[56rem] md:h-[53rem] h-[31rem]"></div>
             <Max7XLScreen>
               <About innerRef={aboutRef} />
@@ -139,13 +138,8 @@ function Home({ userAgent, menu }: any) {
   );
 }
 
-// export const getServerSideProps = ({ req }: any) => {
-//   const userAgent = req.headers["user-agent"];
-//   return { props: { userAgent } };
-// };
-
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/menu");
+  const res = await fetch(`${process.env.URL}/api/menu`);
   const menu: IMenu[] = await res.json();
 
   return {

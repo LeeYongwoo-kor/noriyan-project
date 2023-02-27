@@ -1,7 +1,8 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-export default function Loading() {
+function Loading() {
   return (
     <div className="flex items-center justify-center text-main">
       <FontAwesomeIcon className="fas fa-spin" size="3x" icon={faCircleNotch} />
@@ -9,3 +10,5 @@ export default function Loading() {
     </div>
   );
 }
+
+export default React.memo(Loading);

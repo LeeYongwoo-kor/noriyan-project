@@ -1,4 +1,5 @@
 import { IMenu } from "@data/menu";
+import React from "react";
 import CustomImage from "./CustomImage";
 
 type MenuAllDisplayProps = {
@@ -32,7 +33,7 @@ function getJpCurrency(price: number) {
   }).format(price);
 }
 
-export default function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
+function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
   return (
     <li className="flex flex-col items-center justify-start md:flex-row">
       <div className="relative w-full h-48 sm:w-44 aspect-square">
@@ -69,3 +70,5 @@ export default function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
     </li>
   );
 }
+
+export default React.memo(MenuAllDisplay);

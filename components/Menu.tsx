@@ -114,8 +114,6 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
     }
   }, [shouldRender]);
 
-  console.count("Menu Component");
-
   return (
     <article ref={innerRef} className="w-full md:overflow-hidden min-h-fit">
       <MenuSpecial />

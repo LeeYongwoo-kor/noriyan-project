@@ -49,8 +49,6 @@ export default function Navbar({
     return { ...acc, [pos]: { start, end } };
   }, {});
 
-  console.count("Navbar Component");
-
   const [showNavBar, setShowNavBar] = useState(false);
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
   const [showNavBarMobile, setShowNavBarMobile] = useState(true);

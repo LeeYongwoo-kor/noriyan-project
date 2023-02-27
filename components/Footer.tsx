@@ -3,8 +3,9 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faSquarePhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import React from "react";
 
-export default function Footer() {
+function Footer() {
   return (
     <footer className="px-10 pt-20 pb-12 text-sm font-light lg:px-20 text-slate-300 font-poppins bg-slate-700 min-h-fit">
       <div className="flex flex-col items-center justify-between w-full h-full">
@@ -93,3 +94,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default React.memo(Footer);
