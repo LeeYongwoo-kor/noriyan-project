@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import Link from "next/link";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { LegacyRef, useEffect, useMemo, useState } from "react";
 import MenuAllDisplay from "./MenuAllDisplay";
 import MenuSpecial from "./MenuSpecial";
 import Subtitle from "./Subtitle";
@@ -18,6 +18,12 @@ interface ISubMenu {
   drink: number;
   dessert: number;
 }
+
+type MenuProps = {
+  innerRef: LegacyRef<HTMLElement> | undefined;
+  menu: IMenu[];
+  callbackPosition: () => void;
+};
 
 const showMax = 6;
 
@@ -48,7 +54,7 @@ function getInitialShowStatus(subArr: string[][]): boolean[][] {
   return menuStatus;
 }
 
-function Menu({ innerRef, menu, callbackPosition }: any) {
+function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
   const category: string[] = ["food", "drink", "dessert"];
   const description: string[] = [
     "のりやん食堂の様々な手作り料理とお酒をぜひお楽しみください。",
@@ -103,8 +109,8 @@ function Menu({ innerRef, menu, callbackPosition }: any) {
   }, [selectedKinds, selectedSub]);
 
   useEffect(() => {
-    if (innerRef.current) {
-      callbackPosition(innerRef);
+    if (innerRef?.current) {
+      callbackPosition();
     }
   }, [shouldRender]);
 

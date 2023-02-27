@@ -2,6 +2,7 @@ import { images } from "@constants/images";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { CommonProps } from "types/CommonProps";
 import Subtitle from "./Subtitle";
 
 interface IPhoto {
@@ -15,7 +16,7 @@ const overlayVars = {
   animateColor: { backgroundColor: "rgba(0, 0, 0, 0.6)" },
 };
 
-export default function PhotoGallery({ innerRef }: any) {
+export default function PhotoGallery({ innerRef }: CommonProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<IPhoto | undefined | null>(
     null
   );
