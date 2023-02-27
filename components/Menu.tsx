@@ -116,6 +116,7 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
 
   return (
     <article ref={innerRef} className="w-full md:overflow-hidden min-h-fit">
+      <h1 className="hidden">メニュー</h1>
       <MenuSpecial />
       <Subtitle text="ALL MENU" description={description}>
         <Link

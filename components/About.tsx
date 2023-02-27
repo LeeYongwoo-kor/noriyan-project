@@ -6,6 +6,7 @@ import Subtitle from "./Subtitle";
 export default function About({ innerRef }: CommonProps) {
   return (
     <article ref={innerRef} className="w-full min-h-fit">
+      <h1 className="hidden">概要</h1>
       <div className="flex flex-col items-center justify-center">
         <Subtitle text="ABOUT" />
         <div className="relative w-full h-52">
@@ -19,9 +20,9 @@ export default function About({ innerRef }: CommonProps) {
           />
         </div>
         <div className="w-full px-8 py-14 md:px-0 md:w-160 font-mincho">
-          <p className="inline-block font-extrabold text-xl3clamp text-darkmain">
+          <h2 className="inline-block font-extrabold text-xl3clamp text-darkmain">
             のりやん食堂へようこそ
-          </p>
+          </h2>
           <div className="mt-4 space-y-3 font-semibold text-gray-600">
             <p>夫婦二人で経営します、小料理屋です。</p>
             <p>

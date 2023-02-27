@@ -8,7 +8,7 @@ type SubtitleProps = {
   children?: React.ReactNode;
 };
 
-export default function Subtitle({
+function Subtitle({
   text,
   color = "BLACK",
   description,
@@ -36,12 +36,12 @@ export default function Subtitle({
       {description && description.length !== 0 ? (
         <div className="flex flex-col items-center justify-center w-5/6 mt-4 font-mincho">
           {description.map((sentence: string, idx) => (
-            <p
+            <h3
               key={idx}
               className="text-xs font-semibold text-center text-gray-600 sm:text-sm md:text-base"
             >
               {sentence}
-            </p>
+            </h3>
           ))}
         </div>
       ) : null}
@@ -49,3 +49,5 @@ export default function Subtitle({
     </div>
   );
 }
+
+export default React.memo(Subtitle);

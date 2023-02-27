@@ -9,7 +9,7 @@ export default function CustomImage({ alt, ...props }: any) {
       {...props}
       src={src}
       alt={alt}
-      onError={() => setSrc("/assets/not_found.jpg")}
+      onError={() => setSrc("/assets/noriyan_logo.jpg")}
       placeholder="blur"
       blurDataURL="/assets/blur_placeholder_image.jpg"
     />

@@ -18,6 +18,7 @@ import Subtitle from "./Subtitle";
 export default function Info({ innerRef }: CommonProps) {
   return (
     <article ref={innerRef} className="w-full min-h-fit">
+      <h1 className="hidden">店舗情報</h1>
       <Subtitle text="INFORMATION" />
       <div className="grid w-full mt-8 h-160 sm:grid-cols-2 sm:h-96">
         <div className="relative w-full">

@@ -69,6 +69,7 @@ export default function PhotoGallery({ innerRef }: CommonProps) {
         ref={innerRef}
         className="w-full px-3 pt-1 pb-16 mt-16 bg-scroll bg-center bg-no-repeat bg-cover shadow-md sm:pb-32 sm:bg-fixed lg:px-8 min-h-fit photogallery"
       >
+        <h1 className="hidden">ギャラリー</h1>
         <div className="mx-auto max-w-7xl">
           <Subtitle text="PHOTO GALLERY" color="WHITE" />
           <div className="mt-8 grid w-full gap-2 grid-cols-2 h-[60rem] sm:h-[72rem] lg:grid-cols-4 lg:h-172 [&>div]:cursor-pointer">

@@ -23,6 +23,7 @@ export default function Access({ innerRef }: CommonProps) {
 
   return (
     <article ref={innerRef} className="w-full min-h-fit">
+      <h1 className="hidden">アクセス</h1>
       <Subtitle
         text="ACCESS"
         description={[
@@ -54,13 +55,13 @@ export default function Access({ innerRef }: CommonProps) {
           className="w-full"
         ></iframe>
       </div>
-      <div className="flex items-center justify-center py-8 mt-8 font-semibold text-xlclamp text-slate-700 font-mPlus rounded-xl bg-slate-200">
+      <div className="flex items-center justify-center py-8 mt-8 font-semibold text-lgclamp text-slate-700 font-mPlus rounded-xl bg-slate-200">
         <div className="flex flex-col justify-center space-y-1 sm:space-y-2 md:space-y-3">
-          <p className="mb-3 text-xl3clamp">
+          <p className="flex mb-3 text-xl3clamp">
             <span className="mr-3 text-slate-700">
               <FontAwesomeIcon size="xl" icon={faTrainSubway} />
             </span>
-            地下鉄でお越しの方
+            <h2>地下鉄でお越しの方</h2>
           </p>
           <p className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">

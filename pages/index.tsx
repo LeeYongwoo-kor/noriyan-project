@@ -1,6 +1,7 @@
 import About from "@components/About";
 import Access from "@components/Access";
 import Footer from "@components/Footer";
+import HeadMeta from "@components/HeadMeta";
 import Info from "@components/Info";
 import Loading from "@components/Loading";
 import Max7XLScreen from "@components/Max7XLScreen";
@@ -10,8 +11,6 @@ import PhotoGallery from "@components/PhotoGallery";
 import { IMenu } from "@data/menu";
 import { useDebounce } from "@hooks/useDebounce";
 import dynamic from "next/dynamic";
-import Head from "next/head";
-import { useRouter } from "next/router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IPositionInfo } from "types";
 
@@ -99,15 +98,12 @@ function Home({ menu }: HomeProps) {
 
   return (
     <>
-      <Head>
-        <title>車道のりやん食堂</title>
-        <meta name="description" content="車道のりやん食堂" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
-        />
-        <link rel="favicon" href="/favicon.ico" />
-      </Head>
+      <HeadMeta
+        title="車道のりやん食堂 | 居酒屋 | 家庭料理"
+        description="車道のりやん食堂で美味しいお料理とお酒をご賞味ください。"
+        image=""
+        url={`${process.env.NEXT_PUBLIC_URL}`}
+      />
       <main className="font-murecho bg-[#ffffff] select-none">
         <div id="wrapper" className="relative w-full">
           <Navbar position={positionInfo} screenWidth={screenWidth}>
