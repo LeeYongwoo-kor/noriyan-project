@@ -9,8 +9,8 @@ import { faParking } from "@fortawesome/free-solid-svg-icons/faParking";
 import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
 import { faWifi } from "@fortawesome/free-solid-svg-icons/faWifi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { CommonProps } from "types/CommonProps";
+import CustomImage from "./CustomImage";
 import Subtitle from "./Subtitle";
 
 export default function Info({ innerRef }: CommonProps) {
@@ -20,7 +20,7 @@ export default function Info({ innerRef }: CommonProps) {
       <Subtitle text="INFORMATION" />
       <div className="grid w-full mt-8 h-160 sm:grid-cols-2 sm:h-96">
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.top?.src}
             alt={images?.info?.top?.alt}
             fill
@@ -44,7 +44,7 @@ export default function Info({ innerRef }: CommonProps) {
               ※定休・不定休の場合がございます。
             </p>
           </div>
-          <Image
+          <CustomImage
             src={images?.info?.cover?.src}
             alt={images?.info?.cover?.alt}
             fill
@@ -56,7 +56,7 @@ export default function Info({ innerRef }: CommonProps) {
       </div>
       <div className="w-full mt-8">
         <div className="relative overflow-hidden pt-[33%]">
-          <Image
+          <CustomImage
             src={images?.info?.seat?.src}
             alt={images?.info?.seat?.alt}
             fill
@@ -85,7 +85,7 @@ export default function Info({ innerRef }: CommonProps) {
       </div>
       <div className="grid w-full gap-2 h-160 md:grid-cols-3 md:gap-3 md:h-[22rem]">
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.bottom[0]?.src}
             alt={images?.info?.bottom[0]?.alt}
             fill
@@ -95,7 +95,7 @@ export default function Info({ innerRef }: CommonProps) {
           />
         </div>
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.bottom[1]?.src}
             alt={images?.info?.bottom[1]?.alt}
             fill
@@ -105,7 +105,7 @@ export default function Info({ innerRef }: CommonProps) {
           />
         </div>
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.bottom[2]?.src}
             alt={images?.info?.bottom[2]?.alt}
             fill
@@ -117,7 +117,7 @@ export default function Info({ innerRef }: CommonProps) {
       </div>
       <div className="grid w-full grid-cols-2 gap-2 md:gap-3 mt-2 md:mt-3 h-64 md:h-[22rem]">
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.bottom[3]?.src}
             alt={images?.info?.bottom[3]?.alt}
             fill
@@ -127,7 +127,7 @@ export default function Info({ innerRef }: CommonProps) {
           />
         </div>
         <div className="relative w-full">
-          <Image
+          <CustomImage
             src={images?.info?.bottom[4]?.src}
             alt={images?.info?.bottom[4]?.alt}
             fill
@@ -181,7 +181,7 @@ export default function Info({ innerRef }: CommonProps) {
           </div>
         </div>
         <div className="relative overflow-hidden pt-[55%]">
-          <Image
+          <CustomImage
             src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/payment_info.png`}
             alt="payment_info"
             fill

@@ -1,6 +1,7 @@
 import { images } from "@constants/images";
 import Image from "next/image";
 import { CommonProps } from "types/CommonProps";
+import CustomImage from "./CustomImage";
 import Subtitle from "./Subtitle";
 
 export default function About({ innerRef }: CommonProps) {
@@ -46,7 +47,7 @@ export default function About({ innerRef }: CommonProps) {
         </div>
         <div className="grid w-full sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-3 gap-2 sm:gap-5 h-[36rem] sm:h-[26rem]">
           <div className="relative w-full col-span-2">
-            <Image
+            <CustomImage
               src={images?.about?.bottom[0]?.src}
               alt={images?.about?.bottom[0]?.alt}
               fill
@@ -56,7 +57,7 @@ export default function About({ innerRef }: CommonProps) {
             />
           </div>
           <div className="relative w-full">
-            <Image
+            <CustomImage
               src={images?.about?.bottom[1]?.src}
               alt={images?.about?.bottom[1]?.alt}
               fill
@@ -66,7 +67,7 @@ export default function About({ innerRef }: CommonProps) {
             />
           </div>
           <div className="relative w-full">
-            <Image
+            <CustomImage
               src={images?.about?.bottom[2]?.src}
               alt={images?.about?.bottom[2]?.alt}
               fill
@@ -76,7 +77,7 @@ export default function About({ innerRef }: CommonProps) {
             />
           </div>
           <div className="relative w-full col-span-2 sm:row-span-2">
-            <Image
+            <CustomImage
               src={images?.about?.bottom[3]?.src}
               alt={images?.about?.bottom[3]?.alt}
               fill

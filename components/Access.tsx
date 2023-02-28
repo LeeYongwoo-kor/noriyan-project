@@ -1,9 +1,9 @@
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons/faTrainSubway";
 import { faWalking } from "@fortawesome/free-solid-svg-icons/faWalking";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CommonProps } from "types/CommonProps";
+import CustomImage from "./CustomImage";
 import Subtitle from "./Subtitle";
 
 export default function Access({ innerRef }: CommonProps) {
@@ -66,7 +66,7 @@ export default function Access({ innerRef }: CommonProps) {
           </div>
           <div className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
-              <Image
+              <CustomImage
                 src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/sakura-dori_logo.png`}
                 alt="sakura_dori_logo"
                 fill
@@ -82,7 +82,7 @@ export default function Access({ innerRef }: CommonProps) {
           </div>
           <div className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
-              <Image
+              <CustomImage
                 src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/higashi-yama_logo.png`}
                 alt="higashi-yama_logo"
                 fill

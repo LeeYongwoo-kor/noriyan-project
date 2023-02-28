@@ -1,9 +1,9 @@
+import { images } from "@constants/images";
+import { useInterval } from "@hooks/useInterval";
+import { cls } from "@libs/utils";
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { images } from "@constants/images";
-import { cls } from "@libs/utils";
-import { useInterval } from "@hooks/useInterval";
 
 type SliderProps = {
   component: "notice" | "menu";

@@ -6,8 +6,9 @@ module.exports = {
   ],
   theme: {
     screens: {
+      mobile: "480px",
       sm: "640px",
-      md: "768px",
+      md: "769px",
       lg: "1024px",
       xl: "1280px",
     },
@@ -72,8 +73,8 @@ module.exports = {
         172: "44rem",
       },
       fontSize: {
-        smclamp: ["clamp(0.75rem, 2.5vw, 0.875rem)"],
-        clamp: ["clamp(0.875rem, 2.5vw, 1rem)"],
+        smclamp: ["clamp(0.675rem, 2.5vw, 0.875rem)"],
+        clamp: ["clamp(0.75rem, 2.5vw, 1rem)"],
         lgclamp: ["clamp(0.875rem, 2.5vw, 1.125rem)"],
         xlclamp: ["clamp(1rem, 2.5vw, 1.25rem)"],
         xl2clamp: ["clamp(1.25rem, 2.5vw, 1.5rem)"],

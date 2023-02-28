@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CommonProps } from "types/CommonProps";
+import CustomImage from "./CustomImage";
 import Subtitle from "./Subtitle";
 
 interface IPhoto {
@@ -81,7 +82,7 @@ export default function PhotoGallery({ innerRef }: CommonProps) {
                 layoutId={photo.id}
                 className="relative"
               >
-                <Image
+                <CustomImage
                   src={photo.src}
                   alt={photo.alt}
                   fill
