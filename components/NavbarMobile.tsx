@@ -1,5 +1,6 @@
 import { navHeight } from "@constants/common";
-import { faBullhorn, faImages } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons/faBullhorn";
+import { faImages } from "@fortawesome/free-solid-svg-icons/faImages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";

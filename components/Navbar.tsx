@@ -1,5 +1,6 @@
 import { navHeight, phonenumber, tabletSize } from "@constants/common";
-import { faSmile, faSmileWink } from "@fortawesome/free-solid-svg-icons";
+import { faSmile } from "@fortawesome/free-solid-svg-icons/faSmile";
+import { faSmileWink } from "@fortawesome/free-solid-svg-icons/faSmileWink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";

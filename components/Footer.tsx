@@ -1,6 +1,7 @@
 import { phonenumber } from "@constants/common";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faSquarePhone } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
+import { faSquarePhone } from "@fortawesome/free-solid-svg-icons/faSquarePhone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";

@@ -1,4 +1,4 @@
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons/faCircleNotch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 

@@ -1,4 +1,5 @@
-import { faTrainSubway, faWalking } from "@fortawesome/free-solid-svg-icons";
+import { faTrainSubway } from "@fortawesome/free-solid-svg-icons/faTrainSubway";
+import { faWalking } from "@fortawesome/free-solid-svg-icons/faWalking";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useEffect, useState } from "react";

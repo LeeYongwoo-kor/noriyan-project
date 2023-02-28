@@ -1,15 +1,13 @@
 import { images } from "@constants/images";
-import {
-  faBabyCarriage,
-  faBanSmoking,
-  faCarrot,
-  faChair,
-  faCreditCard,
-  faEgg,
-  faParking,
-  faPhone,
-  faWifi,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBabyCarriage } from "@fortawesome/free-solid-svg-icons/faBabyCarriage";
+import { faBanSmoking } from "@fortawesome/free-solid-svg-icons/faBanSmoking";
+import { faCarrot } from "@fortawesome/free-solid-svg-icons/faCarrot";
+import { faChair } from "@fortawesome/free-solid-svg-icons/faChair";
+import { faCreditCard } from "@fortawesome/free-solid-svg-icons/faCreditCard";
+import { faEgg } from "@fortawesome/free-solid-svg-icons/faEgg";
+import { faParking } from "@fortawesome/free-solid-svg-icons/faParking";
+import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
+import { faWifi } from "@fortawesome/free-solid-svg-icons/faWifi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { CommonProps } from "types/CommonProps";

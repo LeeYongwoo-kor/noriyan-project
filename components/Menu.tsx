@@ -1,14 +1,12 @@
 import { IMenu } from "@data/menu";
-import {
-  faIceCream,
-  faUtensils,
-  faWineGlass,
-  IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-common-types";
+import { faIceCream } from "@fortawesome/free-solid-svg-icons/faIceCream";
+import { faUtensils } from "@fortawesome/free-solid-svg-icons/faUtensils";
+import { faWineGlass } from "@fortawesome/free-solid-svg-icons/faWineGlass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import Link from "next/link";
-import React, { LegacyRef, useEffect, useMemo, useState } from "react";
+import React, { RefObject, useEffect, useMemo, useState } from "react";
 import MenuAllDisplay from "./MenuAllDisplay";
 import MenuSpecial from "./MenuSpecial";
 import Subtitle from "./Subtitle";
@@ -20,7 +18,7 @@ interface ISubMenu {
 }
 
 type MenuProps = {
-  innerRef: LegacyRef<HTMLElement> | undefined;
+  innerRef: RefObject<HTMLElement> | undefined;
   menu: IMenu[];
   callbackPosition: () => void;
 };

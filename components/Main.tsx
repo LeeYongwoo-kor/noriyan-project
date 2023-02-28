@@ -1,6 +1,6 @@
 import { images } from "@constants/images";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
+import { faUtensils } from "@fortawesome/free-solid-svg-icons/faUtensils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
