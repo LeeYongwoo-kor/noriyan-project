@@ -11,9 +11,10 @@ export default function Notice({ innerRef }: CommonProps) {
   };
   return (
     <article ref={innerRef} className="w-full min-h-fit font-mincho">
+      <h1 className="hidden">お知らせ</h1>
       <Subtitle text="NOTICE" />
       <div className="flex flex-col items-center justify-center md:flex-row">
-        <div className="relative md:flex md:p-8 w-full sm:w-5/6 h-112 sm:h-128 px-4 md:h-[40rem] md:flex-3">
+        <div className="relative md:flex md:p-8 w-full sm:w-5/6 h-112 sm:h-128 mobile:px-4 md:h-[40rem] md:flex-3">
           <Slider component="notice" callback={getIndex} />
         </div>
         {imageIndex !== null ? (

@@ -57,13 +57,13 @@ export default function Access({ innerRef }: CommonProps) {
       </div>
       <div className="flex items-center justify-center py-8 mt-8 font-semibold text-lgclamp text-slate-700 font-mPlus rounded-xl bg-slate-200">
         <div className="flex flex-col justify-center space-y-1 sm:space-y-2 md:space-y-3">
-          <p className="flex mb-3 text-xl3clamp">
+          <div className="flex mb-3 text-xl3clamp">
             <span className="mr-3 text-slate-700">
               <FontAwesomeIcon size="xl" icon={faTrainSubway} />
             </span>
             <h2>地下鉄でお越しの方</h2>
-          </p>
-          <p className="flex items-center">
+          </div>
+          <div className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
                 src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/sakura-dori_logo.png`}
@@ -78,8 +78,8 @@ export default function Access({ innerRef }: CommonProps) {
               <FontAwesomeIcon size="1x" icon={faWalking} />
             </span>
             徒歩1分
-          </p>
-          <p className="flex items-center">
+          </div>
+          <div className="flex items-center">
             <span className="relative inline-block w-6 h-6 mr-2 sm:w-8 sm:h-8">
               <Image
                 src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/higashi-yama_logo.png`}
@@ -94,7 +94,7 @@ export default function Access({ innerRef }: CommonProps) {
               <FontAwesomeIcon size="1x" icon={faWalking} />
             </span>
             徒歩8分
-          </p>
+          </div>
         </div>
       </div>
     </article>

@@ -18,6 +18,10 @@ export default function HeadMeta({ title, description, url, image }: HeadMeta) {
           "車道のりやん食堂で美味しいお料理とお酒をご賞味ください。"
         }
       />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+      />
 
       <meta property="og:title" content={title || "車道のりやん食堂"} />
       <meta property="og:type" content="website" />

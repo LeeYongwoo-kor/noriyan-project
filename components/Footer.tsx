@@ -45,7 +45,7 @@ function Footer() {
           <div>
             <h2 className="mb-2.5 text-lg md:text-xl font-medium">Contact</h2>
             <div className="space-y-2 text-slate-400">
-              <p>
+              <div>
                 <span>
                   <FontAwesomeIcon
                     className="mr-1"
@@ -58,8 +58,8 @@ function Footer() {
                   phonenumber.slice(3, 6) +
                   "-" +
                   phonenumber.slice(6)}
-              </p>
-              <p>
+              </div>
+              <div>
                 <span>
                   <FontAwesomeIcon
                     className="mr-1"
@@ -68,7 +68,7 @@ function Footer() {
                   />
                 </span>
                 abcdefghijklmn@gmail.com
-              </p>
+              </div>
               <div className="text-slate-400">
                 <Link
                   href="https://www.instagram.com/kurumamichi.noriyan/"
