@@ -31,10 +31,19 @@
   }
 
   .boss-image {
-    background-image: url("https://norisang-project.s3.ap-northeast-1.amazonaws.com/about_restaurant_bosses01.jpg");
+    background-image: url("https://d22suaf3v2qshw.cloudfront.net/about_restaurant_bosses01.jpg");
   }
 
   .photogallery {
-    background-image: url("https://norisang-project.s3.ap-northeast-1.amazonaws.com/photo_restaurant_background.jpg");
+    background-image: url("https://d22suaf3v2qshw.cloudfront.net/photo_restaurant_background.jpg");
+  }
+
+  .no-scroll {
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .no-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
 }
