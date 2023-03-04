@@ -22,9 +22,10 @@ export default function withHandler({ methods, handler }: ConfigType) {
       return res.status(405).end();
     }
     try {
+      res.setHeader("Set-Cookie", "myCookie=value; SameSite=Lax");
       await handler(req, res);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return res.status(500).json({ error });
     }
   };
