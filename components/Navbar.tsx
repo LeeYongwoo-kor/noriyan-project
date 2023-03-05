@@ -43,12 +43,13 @@ export default function Navbar({
   screenWidth,
   children,
 }: NavbarProps) {
-  const positionMap = navbar.reduce((acc, pos, idx, arr) => {
-    const next: NavbarTypes | undefined = arr[idx + 1];
-    const start: number = position[pos] - navHeight;
-    const end: number = next ? position[next] - navHeight : Infinity;
-    return { ...acc, [pos]: { start, end } };
-  }, {});
+  const positionMap: { [key in NavbarTypes]: { start: number; end: number } } =
+    navbar.reduce((acc, pos, idx, arr) => {
+      const next: NavbarTypes | undefined = arr[idx + 1];
+      const start: number = position[pos] - navHeight;
+      const end: number = next ? position[next] - navHeight : Infinity;
+      return { ...acc, [pos]: { start, end } };
+    }, {} as { [key in NavbarTypes]: { start: number; end: number } });
 
   const [showNavBar, setShowNavBar] = useState(false);
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
@@ -68,17 +69,19 @@ export default function Navbar({
     setShowNavBarMobile((prev) => !prev);
   };
 
-  useMotionValueEvent(scrollY, "change", (scroll) => {
+  const handleChangeScroll = (scroll: number) => {
     setShowNavBar(scroll >= 100);
 
     const currentPosition = Object.entries(positionMap).find(
-      ([_, { start, end }]) => {
+      ([_key, { start, end }]) => {
         return scroll >= start && scroll < end;
       }
     ) as CurrentPositionType | undefined;
 
     setCurrPosition(currentPosition ? currentPosition[0] : "home");
-  });
+  };
+
+  useMotionValueEvent(scrollY, "change", handleChangeScroll);
 
   return (
     <nav className="relative inset-0 w-full md:pt-10">
@@ -198,6 +201,7 @@ export default function Navbar({
         <NavbarMobile
           position={position}
           isShow={showNavBarMobile}
+          scrollY={scrollY}
           callbackScrollMove={handleClickNav}
         />
       ) : null}
