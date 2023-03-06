@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CurrentPositionType, IPositionInfo, NavbarTypes } from "types";
 import NavbarMobile from "./NavbarMobile";
 
@@ -44,12 +44,14 @@ export default function Navbar({
   children,
 }: NavbarProps) {
   const positionMap: { [key in NavbarTypes]: { start: number; end: number } } =
-    navbar.reduce((acc, pos, idx, arr) => {
-      const next: NavbarTypes | undefined = arr[idx + 1];
-      const start: number = position[pos] - navHeight;
-      const end: number = next ? position[next] - navHeight : Infinity;
-      return { ...acc, [pos]: { start, end } };
-    }, {} as { [key in NavbarTypes]: { start: number; end: number } });
+    useMemo(() => {
+      return navbar.reduce((acc, pos, idx, arr) => {
+        const next: NavbarTypes | undefined = arr[idx + 1];
+        const start: number = position[pos] - navHeight;
+        const end: number = next ? position[next] - navHeight : Infinity;
+        return { ...acc, [pos]: { start, end } };
+      }, {} as { [key in NavbarTypes]: { start: number; end: number } });
+    }, [position]);
 
   const [showNavBar, setShowNavBar] = useState(false);
   const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
@@ -73,6 +75,7 @@ export default function Navbar({
     setShowNavBar(scroll >= 100);
 
     const currentPosition = Object.entries(positionMap).find(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ([_key, { start, end }]) => {
         return scroll >= start && scroll < end;
       }
@@ -199,9 +202,8 @@ export default function Navbar({
       {children}
       {screenWidth && screenWidth < tabletSize ? (
         <NavbarMobile
-          position={position}
           isShow={showNavBarMobile}
-          scrollY={scrollY}
+          currPosition={currPosition}
           callbackScrollMove={handleClickNav}
         />
       ) : null}

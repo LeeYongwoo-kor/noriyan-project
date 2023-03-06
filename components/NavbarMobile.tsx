@@ -1,54 +1,24 @@
-import { navHeight } from "@constants/common";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons/faBullhorn";
 import { faImages } from "@fortawesome/free-solid-svg-icons/faImages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cls } from "@libs/utils";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { useState } from "react";
-import { CurrentPositionType, IPositionInfo, NavbarTypes } from "types";
+import React from "react";
+import { NavbarTypes } from "types";
 
 type NavbarMobileProps = {
-  position: IPositionInfo;
   isShow: boolean;
+  currPosition: NavbarTypes;
   callbackScrollMove: (components: NavbarTypes) => void;
 };
 
-const navbarMobile: NavbarTypes[] = [
-  "notice",
-  "menu",
-  "photoGallery",
-  "access",
-  "info",
-];
-
-export default function NavbarMobile({
-  position,
+function NavbarMobile({
   isShow,
+  currPosition,
   callbackScrollMove,
 }: NavbarMobileProps) {
-  const positionMap = navbarMobile.reduce((acc, pos, idx, arr) => {
-    const next: NavbarTypes | undefined = arr[idx + 1];
-    const start: number = position[pos] - navHeight;
-    const end: number = next ? position[next] - navHeight : Infinity;
-    return { ...acc, [pos]: { start, end } };
-  }, {});
-
-  const [currPosition, setCurrPosition] = useState<NavbarTypes>("home");
-  const { scrollY } = useScroll();
-
   const handleClickNav = (components: NavbarTypes) => {
     callbackScrollMove(components);
   };
-
-  useMotionValueEvent(scrollY, "change", (scroll) => {
-    const currentPosition = Object.entries(positionMap).find(
-      ([_, { start, end }]) => {
-        return scroll >= start && scroll < end;
-      }
-    ) as CurrentPositionType | undefined;
-
-    setCurrPosition(currentPosition ? currentPosition[0] : "home");
-  });
 
   return (
     <div className={cls("md:hidden")}>
@@ -155,3 +125,5 @@ export default function NavbarMobile({
     </div>
   );
 }
+
+export default React.memo(NavbarMobile);
