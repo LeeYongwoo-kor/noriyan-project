@@ -1,3 +1,5 @@
+import { getJpCurrency } from "@constants/common";
+import { images } from "@constants/images";
 import { useState } from "react";
 import Slider from "./Slider";
 import Subtitle from "./Subtitle";
@@ -51,33 +53,35 @@ export default function MenuSpecial() {
         text="SPECIAL MENU"
         description={["のりやん食堂で愛されている人気メニューです。"]}
       />
-      <div className="relative w-[95%] md:w-4/5 lg:w-3/5 mx-auto h-72 sm:h-112">
-        <Slider component="menu" callback={getIndex} />
+      <div className="relative w-full mobile:w-[95%] mx-auto md:w-4/5 lg:w-3/5 h-80 sm:h-112">
+        <Slider
+          component="menu"
+          callback={getIndex}
+          intervalTimer={6000}
+          isCover={true}
+        />
       </div>
       {imageIndex !== null ? (
-        <div className="flex flex-col w-[95%] md:w-4/5 min-h-fit px-4 sm:px-8 pt-8 pb-12 mx-auto lg:w-3/5">
-          {imageIndex === 0 ? (
-            <div className="w-full min-h-fit">
-              <div className="flex items-end justify-start w-full">
-                <h2 className="text-3xl font-extrabold sm:text-4xl">
-                  からすみ餅
-                </h2>
-                <h3 className="ml-5 text-lg font-semibold sm:text-2xl text-main font-murecho">
-                  ￥1,200<span className="md:text-sm">（税込）</span>
-                </h3>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium text-gray-600 sm:text-base">
-                  Karasumi Mochi
-                </h3>
-              </div>
-              <p className="mt-5 font-semibold text-gray-600 text-lgclamp">
-                やわらかく仕上げたからすみをきめ細やかなのし餅でくるみました。
-                ほんのりと焼色がつくほどに焙っていただき、お召し上がりください。
-                お雑煮にいれていただくと格別の風味がございます。
-              </p>
+        <div className="flex flex-col w-[95%] md:w-4/5 min-h-fit sm:h-64 px-4 sm:px-8 pt-5 sm:pt-8 pb-12 mx-auto lg:w-3/5">
+          <div className="w-full">
+            <div className="flex flex-wrap items-end justify-start flex-auto w-full">
+              <h2 className="text-2xl font-extrabold mobile:text-3xl sm:text-4xl">
+                {images.slider.menu[imageIndex]?.nameJp}
+              </h2>
+              <h3 className="ml-3 text-base font-semibold sm:ml-5 sm:text-2xl text-main font-murecho">
+                {getJpCurrency(images.slider.menu[imageIndex]?.price)}
+                <span className="md:text-sm">（税込）</span>
+              </h3>
             </div>
-          ) : null}
+            <div>
+              <h3 className="text-sm font-medium text-gray-600 sm:text-base">
+                {images.slider.menu[imageIndex]?.nameEng}
+              </h3>
+            </div>
+            <p className="mt-5 font-semibold text-gray-600 text-lgclamp">
+              {images.slider.menu[imageIndex]?.description}
+            </p>
+          </div>
         </div>
       ) : null}
     </div>

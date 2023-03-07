@@ -7,15 +7,25 @@ interface IPhotoGalleryProps extends IImageProps {
   id: string;
 }
 
+interface ISpecialMenuProps extends IPhotoGalleryProps {
+  nameJp: string;
+  nameEng: string;
+  price: number;
+  description: string;
+}
+
 interface ISlider {
   notice: [IImageProps, IImageProps];
   menu: [
-    IImageProps,
-    IImageProps,
-    IImageProps,
-    IImageProps,
-    IImageProps,
-    IImageProps
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps,
+    ISpecialMenuProps
   ];
 }
 
@@ -72,28 +82,94 @@ export const images: IImage = {
     ],
     menu: [
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_01.jpg`,
-        alt: `special_menu_image_01`,
+        id: "001",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_011.jpg`,
+        alt: "黒毛和牛ロースステーキ",
+        nameJp: "黒毛和牛ロースステーキ",
+        nameEng: "Japanese Black Beef Steak",
+        price: 2500,
+        description:
+          "これは一度食べていただきたい、のりやんのおすすめメニューです。とにかく口に運んだ瞬間にとろける、しかし脂っこくはない。味がついておりますので、お塩だけでお召し上がりください。",
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_02.jpg`,
-        alt: `special_menu_image_02`,
+        id: "002",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_022.jpg`,
+        alt: "ナシゴレン",
+        nameJp: "ナシゴレン",
+        nameEng: "Nasi Goreng (Indonesian Fried Rice)",
+        price: 950,
+        description:
+          "パクチーにミント、そしてライム。香辛料が程よく効いた、インドネシア風ライスです。〆に大人気！上にのっている、半熟目玉焼きを割って、お召し上がりください。",
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_03.jpg`,
-        alt: `special_menu_image_03`,
+        id: "003",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_033.jpg`,
+        alt: "からすみ餅",
+        nameJp: "からすみ餅",
+        nameEng: "Karasumi Mochi",
+        price: 1200,
+        description:
+          "やわらかく仕上げたからすみをきめ細やかなのし餅でくるみました。ほんのりと焼色がつくほどに焙って仕上げました。",
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_04.jpg`,
-        alt: `special_menu_image_04`,
+        id: "004",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_044.jpg`,
+        alt: "里芋のキッシュ",
+        nameJp: "里芋のキッシュ",
+        nameEng: "Sweet Potato Kish",
+        price: 600,
+        description:
+          "ほくほくの里芋がたっぷり入ったキッシュです。小麦粉は一切使わず、生クリームと卵だけで作っておりますので、ぷるぷる、そしてふわふわの食感です。",
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_05.jpg`,
-        alt: `special_menu_image_05`,
+        id: "005",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_055.jpg`,
+        alt: "地鶏ステーキジンジャーソース",
+        nameJp: "地鶏ステーキジンジャーソース",
+        nameEng: "Ginger Sauce Chicken Steak",
+        price: 950,
+        description:
+          "しっとりとしたもも肉とパリッと焼き上げた皮、自家製のジンジャーソースでさっぱりと。お肉は食べたいけど、軽めがいい方はぜひ。",
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_06.jpg`,
-        alt: `special_menu_image_06`,
+        id: "006",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_066.jpg`,
+        alt: "グリーンカレー",
+        nameJp: "グリーンカレー",
+        nameEng: "Green Curry",
+        price: 1200,
+        description:
+          "辛すぎず、クリーミーすぎない味付けで、サラッと仕上げました。タイ料理が苦手な方も召し上がれます。柔らかく調理した鶏肉もご一緒に。",
+      },
+      {
+        id: "007",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_077.jpg`,
+        alt: "明太クリームチーズ大根",
+        nameJp: "明太クリームチーズ大根",
+        nameEng: "Mentai Cream Cheese Radish",
+        price: 750,
+        description:
+          "お出汁×チーズ。合うんです。優しい味のふろふき大根に、まろやかな明太クリームがマッチします。ぜひ一度お試しください。",
+      },
+      {
+        id: "008",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_088.jpg`,
+        alt: "締めパフェ",
+        nameJp: "締めパフェ",
+        nameEng: "Dessert Parfait",
+        price: 950,
+        description:
+          "中には季節ごとに変わるアイスや、ゼリー、上には抹茶ティラミス。少し大きめですのでシェアしても大丈夫です。まさに、「デザートは別腹」な一品です。",
+      },
+      {
+        id: "009",
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_099.jpg`,
+        alt: "ミルクティーシャーベット",
+        nameJp: "ミルクティーシャーベット",
+        nameEng: "Milk Tea Sharbet",
+        price: 500,
+        description:
+          "お腹いっぱいでも、食べられるさっぱりとしたデザートです。香り高いTWGの紅茶を使い、クリームでまろやかさもプラスしました。",
       },
     ],
   },
@@ -104,7 +180,7 @@ export const images: IImage = {
     },
     bottom: [
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_04.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_004.jpg`,
         alt: `about_bottom_image_01`,
       },
       {
@@ -116,7 +192,7 @@ export const images: IImage = {
         alt: `about_bottom_image_03`,
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_03.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_003.jpg`,
         alt: `about_bottom_image_04`,
       },
     ],
@@ -190,7 +266,7 @@ export const images: IImage = {
     },
     {
       id: `007`,
-      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/photo_restaurant_07.jpg`,
+      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/photo_restaurant_09.jpg`,
       alt: `photo_image_07`,
     },
     {

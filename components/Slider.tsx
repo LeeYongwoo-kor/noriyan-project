@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 type SliderProps = {
   component: "notice" | "menu";
   intervalTimer?: number | undefined;
+  isCover?: boolean;
   callback?: (index: number) => void;
 };
 
@@ -39,6 +40,7 @@ const swipePower = (offset: number, velocity: number) => {
 export default function Slider({
   component,
   intervalTimer,
+  isCover = false,
   callback,
 }: SliderProps) {
   const swipeTimer = 400;
@@ -111,18 +113,31 @@ export default function Slider({
               src={sliders[imageIndex]?.src}
               alt={sliders[imageIndex]?.alt}
               fill
-              quality={100}
+              quality={80}
+              priority={true}
               draggable={false}
-              className="z-10 object-scale-down sm:border-transparent sm:border-2 rounded-4xl"
+              className={cls(
+                "z-10 sm:border-transparent sm:border-2 rounded-4xl",
+                isCover ? "object-cover" : "object-scale-down"
+              )}
+              sizes="(min-width: 1024px) 100vw, 
+              (min-width: 769px) 90vw, 
+              80vw"
             />
-            <Image
-              src={sliders[imageIndex]?.src}
-              alt={sliders[imageIndex]?.alt}
-              fill
-              quality={5}
-              draggable={false}
-              className="z-0 object-fill border border-transparent blur-2xl rounded-4xl"
-            />
+            {!isCover ? (
+              <Image
+                src={sliders[imageIndex]?.src}
+                alt={sliders[imageIndex]?.alt}
+                fill
+                priority={true}
+                quality={5}
+                draggable={false}
+                className="z-0 object-fill border border-transparent blur-2xl rounded-4xl"
+                sizes="(min-width: 1024px) 100vw, 
+              (min-width: 769px) 90vw, 
+              80vw"
+              />
+            ) : null}
           </motion.div>
           <motion.img />
         </AnimatePresence>
