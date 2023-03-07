@@ -17,18 +17,19 @@ export default function About({ innerRef }: CommonProps) {
             fill
             className="object-cover"
             quality={100}
+            priority={true}
             draggable={false}
           />
         </div>
-        <div className="w-full px-8 py-14 md:px-0 md:w-160 font-mincho">
+        <div className="w-full px-8 py-10 md:py-14 md:px-0 md:w-160 font-mincho">
           <h2 className="inline-block font-extrabold text-xl3clamp text-darkmain">
             のりやん食堂へようこそ
           </h2>
-          <div className="mt-4 space-y-3 font-semibold text-gray-600">
+          <div className="mt-4 space-y-3 font-semibold text-gray-600 text-lgclamp">
             <p>夫婦二人で経営します、小料理屋です。</p>
             <p>
               和食をメインに、鉄板焼きや、旬のお刺身、
-              洋食、韓国料理、アジアン等もございます。
+              洋食、韓国料理、アジアンもございます。
               種類豊富なカクテルや日本酒もご用意しております。
             </p>
             <p>

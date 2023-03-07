@@ -1,7 +1,11 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, ComponentProps } from "react";
 
-function CustomImage({ alt, ...props }: any) {
+interface CustomImageProps extends ComponentProps<typeof Image> {
+  alt: string;
+}
+
+function CustomImage({ alt, ...props }: CustomImageProps) {
   const [src, setSrc] = useState(props?.src);
 
   return (

@@ -1,4 +1,4 @@
-import { navHeight, phonenumber, tabletSize } from "@constants/common";
+import { NAV_HEIGHT, PHONE_NUMBER, TABLET_SIZE } from "@constants/common";
 import { faSmile } from "@fortawesome/free-solid-svg-icons/faSmile";
 import { faSmileWink } from "@fortawesome/free-solid-svg-icons/faSmileWink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -47,8 +47,8 @@ export default function Navbar({
     useMemo(() => {
       return navbar.reduce((acc, pos, idx, arr) => {
         const next: NavbarTypes | undefined = arr[idx + 1];
-        const start: number = position[pos] - navHeight;
-        const end: number = next ? position[next] - navHeight : Infinity;
+        const start: number = position[pos] - NAV_HEIGHT;
+        const end: number = next ? position[next] - NAV_HEIGHT : Infinity;
         return { ...acc, [pos]: { start, end } };
       }, {} as { [key in NavbarTypes]: { start: number; end: number } });
     }, [position]);
@@ -165,7 +165,7 @@ export default function Navbar({
               <div>
                 <span className="md:ml-3">
                   <Link
-                    href={`tel:${phonenumber}`}
+                    href={`tel:${PHONE_NUMBER}`}
                     className="inline-flex flex-col items-center px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none"
                   >
                     <div className="hidden text-xs md:block">
@@ -185,11 +185,11 @@ export default function Navbar({
                         />
                       </svg>
                       <div className="hidden ml-2 text-2xl md:block">
-                        {phonenumber.slice(0, 3) +
+                        {PHONE_NUMBER.slice(0, 3) +
                           "-" +
-                          phonenumber.slice(3, 6) +
+                          PHONE_NUMBER.slice(3, 6) +
                           "-" +
-                          phonenumber.slice(6)}
+                          PHONE_NUMBER.slice(6)}
                       </div>
                     </div>
                   </Link>
@@ -200,7 +200,7 @@ export default function Navbar({
         </div>
       </div>
       {children}
-      {screenWidth && screenWidth < tabletSize ? (
+      {screenWidth && screenWidth < TABLET_SIZE ? (
         <NavbarMobile
           isShow={showNavBarMobile}
           currPosition={currPosition}

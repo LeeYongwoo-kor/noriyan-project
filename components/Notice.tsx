@@ -1,11 +1,11 @@
-import { phonenumber } from "@constants/common";
+import { PHONE_NUMBER } from "@constants/common";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
 import { CommonProps } from "types/CommonProps";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
 import Slider from "./Slider";
 import Subtitle from "./Subtitle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Notice({ innerRef }: CommonProps) {
   const [imageIndex, setImageIndex] = useState<number | null>(null);
@@ -18,7 +18,7 @@ export default function Notice({ innerRef }: CommonProps) {
       <Subtitle text="NOTICE" />
       <div className="flex flex-col items-center justify-center md:flex-row bg-slate-100">
         <div className="relative md:flex pt-8 md:p-8 w-full sm:w-5/6 h-112 sm:h-128 mobile:px-4 md:h-[40rem] md:flex-3">
-          <Slider component="notice" callback={getIndex} intervalTimer={5000} />
+          <Slider component="notice" callback={getIndex} isCover={false} />
         </div>
         {imageIndex !== null ? (
           <div className="relative flex flex-col self-start p-8 md:pt-24 flex-2">
@@ -29,7 +29,7 @@ export default function Notice({ innerRef }: CommonProps) {
                   のご予約を承っております。
                 </h2>
                 <div>
-                  <p className="mb-2 text-base font-bold md:text-lg md:mb-4 text-slate-700 font-mincho">
+                  <p className="mb-2 text-base font-medium md:text-lg md:mb-4 text-slate-600 font-mincho">
                     のりやん食堂では、自家製の卵サンドをお持ち帰りいただけます。
                     新鮮な卵をたっぷりと使用することで、フワッフワの食感に仕上がっております。
                     ぜひ、一度ご賞味ください。
@@ -42,7 +42,7 @@ export default function Notice({ innerRef }: CommonProps) {
                 </div>
                 <div className="w-full">
                   <Link
-                    href={`tel:${phonenumber}`}
+                    href={`tel:${PHONE_NUMBER}`}
                     className="inline-flex flex-col items-center w-full px-4 py-4 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
                   >
                     <div className="flex items-center justify-center">
@@ -71,7 +71,7 @@ export default function Notice({ innerRef }: CommonProps) {
                   をご用意しております。
                 </h2>
                 <div>
-                  <p className="mb-2 text-base font-bold md:text-lg md:mb-4 text-slate-700 font-mincho">
+                  <p className="mb-2 text-base font-medium md:text-lg md:mb-4 text-slate-600 font-mincho">
                     当店では、毎月旬の食材を使用した季節料理を提供しています。
                     地元の食材にこだわり、素材の旨味を最大限に引き出す料理をご提供し、お客様にご満足いただける食堂を目指しています。
                     是非、当店で美味しいお食事をお楽しみください。
@@ -94,7 +94,7 @@ export default function Notice({ innerRef }: CommonProps) {
                         size="2x"
                         icon={faInstagram}
                       />
-                      <div className="ml-2 text-lg">最新の情報ははこちら</div>
+                      <div className="ml-2 text-lg">最新の情報はこちら</div>
                     </div>
                   </Link>
                 </div>

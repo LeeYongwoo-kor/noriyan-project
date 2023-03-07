@@ -1,3 +1,4 @@
+import { DAY_TO_MILLISECOND, DECISION, getJpCurrency } from "@constants/common";
 import { IMenu } from "@data/menu";
 import React from "react";
 import CustomImage from "./CustomImage";
@@ -6,16 +7,13 @@ type MenuAllDisplayProps = {
   dish: IMenu;
 };
 
-const dayToMillsec = 86400000;
-const decision = 14;
-
 function isNewArrival(regdate: string) {
   try {
     const currDate = new Date().getTime();
     const regDate = new Date(regdate).getTime();
-    const elapsedTime = (currDate - regDate) / dayToMillsec;
+    const elapsedTime = (currDate - regDate) / DAY_TO_MILLISECOND;
 
-    if (elapsedTime < decision) {
+    if (elapsedTime < DECISION) {
       return true;
     }
 
@@ -24,13 +22,6 @@ function isNewArrival(regdate: string) {
     console.warn("フォーマットが間違っています。", err);
     return false;
   }
-}
-
-function getJpCurrency(price: number) {
-  return new Intl.NumberFormat("ja-JP", {
-    style: "currency",
-    currency: "JPY",
-  }).format(price);
 }
 
 function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
@@ -42,6 +33,7 @@ function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
           className="object-cover w-full rounded-3xl"
           src={dish.imageUrl}
           fill
+          draggable={false}
         />
       </div>
       <div className="px-3 py-4 font-semibold md:px-6 md:py-10 lg:px-10">
@@ -50,12 +42,12 @@ function MenuAllDisplay({ dish }: MenuAllDisplayProps) {
             {dish.name}
           </div>
           {dish.recommendation > 0 ? (
-            <span className="mr-0.5 text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-medium bg-main text-white rounded-full">
+            <span className="mr-0.5 text-[0.625rem] sm:text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-medium bg-main text-white rounded-full">
               人気
             </span>
           ) : null}
           {isNewArrival(dish.regdate) ? (
-            <span className="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-medium bg-red-500 text-white rounded-full">
+            <span className="text-[0.625rem] sm:text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-medium bg-red-500 text-white rounded-full">
               NEW
             </span>
           ) : null}

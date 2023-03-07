@@ -1,4 +1,4 @@
-import { phonenumber } from "@constants/common";
+import { EMAIL, PHONE_NUMBER } from "@constants/common";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons/faInstagram";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faSquarePhone } from "@fortawesome/free-solid-svg-icons/faSquarePhone";
@@ -54,11 +54,11 @@ function Footer() {
                     icon={faSquarePhone}
                   />
                 </span>
-                {phonenumber.slice(0, 3) +
+                {PHONE_NUMBER.slice(0, 3) +
                   "-" +
-                  phonenumber.slice(3, 6) +
+                  PHONE_NUMBER.slice(3, 6) +
                   "-" +
-                  phonenumber.slice(6)}
+                  PHONE_NUMBER.slice(6)}
               </div>
               <div>
                 <span>
@@ -68,7 +68,7 @@ function Footer() {
                     icon={faEnvelope}
                   />
                 </span>
-                abcdefghijklmn@gmail.com
+                {EMAIL}
               </div>
               <div className="text-slate-400">
                 <Link

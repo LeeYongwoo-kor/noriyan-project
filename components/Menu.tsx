@@ -59,11 +59,10 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
     "※ 売り切れの場合もございますので、最新情報は以下のメニューサイトからご確認ください。",
   ];
   const categoryIcon: IconDefinition[] = [faUtensils, faWineGlass, faIceCream];
-  const subArr = useMemo(() => getSubArr(menu), []);
+  const subArr = useMemo(() => getSubArr(menu), [menu]);
 
   const [shouldRender, setShouldRender] = useState(false);
   const [selectedKinds, setSelectedKinds] = useState<number>(0);
-  // key: index of category array
   const [selectedSub, setSelectedSub] = useState<ISubMenu>({
     food: 0,
     drink: 0,
@@ -104,12 +103,14 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
       )
     );
     setShouldRender((prevShouldRender) => !prevShouldRender);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedKinds, selectedSub]);
 
   useEffect(() => {
     if (innerRef?.current) {
       callbackPosition();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldRender]);
 
   return (

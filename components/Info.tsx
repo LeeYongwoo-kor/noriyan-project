@@ -115,7 +115,7 @@ export default function Info({ innerRef }: CommonProps) {
           />
         </div>
       </div>
-      <div className="grid w-full grid-cols-2 gap-2 md:gap-3 mt-2 md:mt-3 h-64 md:h-[22rem]">
+      <div className="grid w-full md:grid-cols-2 gap-2 md:gap-3 mt-2 md:mt-3 h-112 md:h-[22rem]">
         <div className="relative w-full">
           <CustomImage
             src={images?.info?.bottom[3]?.src}

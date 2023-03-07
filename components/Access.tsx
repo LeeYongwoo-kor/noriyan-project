@@ -10,7 +10,8 @@ export default function Access({ innerRef }: CommonProps) {
   const [thisNavigator, setNavigator] = useState<string[]>(["ja", "ja"]);
 
   useEffect(() => {
-    const language: string | undefined = navigator?.language;
+    const language: string | null =
+      typeof window !== "undefined" ? window.navigator?.language : null;
 
     if (language) {
       const languageSplits = language.split("-");
