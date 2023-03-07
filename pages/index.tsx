@@ -10,6 +10,7 @@ import Notice from "@components/Notice";
 import PhotoGallery from "@components/PhotoGallery";
 import { IMenu } from "@data/menu";
 import { useDebounce } from "@hooks/useDebounce";
+import { loadMenu } from "@libs/load-menu";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IPositionInfo } from "types";
@@ -73,28 +74,22 @@ function Home({ menu }: HomeProps) {
       access: accessRef.current?.offsetTop || 0,
       info: infoRef.current?.offsetTop || 0,
     }));
-    setScreenWidth(window && window.innerWidth);
+    if (typeof window !== "undefined") {
+      setScreenWidth(window.innerWidth);
+    }
   }, []);
 
   const debouncedHandleResize = useDebounce(handleResize, 500);
 
   useEffect(() => {
     debouncedHandleResize();
-
     window.addEventListener("resize", debouncedHandleResize, opts);
 
     return () => {
       window.removeEventListener("resize", debouncedHandleResize, opts);
     };
-  }, [
-    aboutRef,
-    noticeRef,
-    menuRef,
-    photoGalleryRef,
-    accessRef,
-    infoRef,
-    positionInfo.menu,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -104,7 +99,7 @@ function Home({ menu }: HomeProps) {
         image=""
         url={`${process.env.NEXT_PUBLIC_URL}`}
       />
-      <main className="font-murecho bg-[#ffffff] select-none">
+      <main className="font-murecho bg-[#ffffff] select-auto">
         <div id="wrapper" className="relative w-full">
           <Navbar position={positionInfo} screenWidth={screenWidth}>
             <Main position={positionInfo} />
@@ -113,7 +108,7 @@ function Home({ menu }: HomeProps) {
               <About innerRef={aboutRef} />
               <Notice innerRef={noticeRef} />
             </Max7XLScreen>
-            <div className="w-full mt-32 mb-10 bg-fixed bg-left bg-no-repeat xl:bg-center bg-mobile sm:bg-auto xl:bg-cover h-96 sm:h-120 boss-image"></div>
+            <div className="w-full mt-16 mb-10 bg-fixed bg-left bg-no-repeat xl:bg-center bg-mobile sm:bg-auto xl:bg-cover h-96 sm:h-120 boss-image"></div>
             <Max7XLScreen>
               <Menu
                 innerRef={menuRef}
@@ -135,14 +130,12 @@ function Home({ menu }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(`${process.env.URL}/api/menu`);
-  const menu: IMenu[] = await res.json();
-
+  const menu: IMenu[] = await loadMenu();
   return {
     props: {
       menu,
     },
-    revalidate: 86400,
+    revalidate: 604800,
   };
 }
 

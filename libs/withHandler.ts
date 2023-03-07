@@ -18,15 +18,16 @@ export default function withHandler({ methods, handler }: ConfigType) {
     req: NextApiRequest,
     res: NextApiResponse
   ): Promise<any> {
-    if (req.method && !methods.includes(req.method as any)) {
+    if (req.method && !methods.includes(req.method as method)) {
       return res.status(405).end();
     }
     try {
-      res.setHeader("Set-Cookie", "myCookie=value; SameSite=Lax");
       await handler(req, res);
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error });
+      alert(
+        "インターネット接続が不安定です。しばらくしてから再度お試しください。 "
+      );
+      return res.status(500).end();
     }
   };
 }
