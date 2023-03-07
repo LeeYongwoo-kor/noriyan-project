@@ -73,3 +73,9 @@ module.exports = {
 ### > Framer Motion
 
 - npm i framer-motion
+
+---
+
+## Bundle Analyze
+
+- npm install -D @next/bundle-analyzer
