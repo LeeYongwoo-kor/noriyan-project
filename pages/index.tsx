@@ -8,9 +8,8 @@ import Max7XLScreen from "@components/Max7XLScreen";
 import Navbar from "@components/Navbar";
 import Notice from "@components/Notice";
 import PhotoGallery from "@components/PhotoGallery";
-import { IMenu } from "@data/menu";
+import data, { IMenu } from "@data/menu";
 import { useDebounce } from "@hooks/useDebounce";
-import { loadMenu } from "@libs/load-menu";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IPositionInfo } from "types";
@@ -96,8 +95,9 @@ function Home({ menu }: HomeProps) {
       <HeadMeta
         title="車道のりやん食堂 | 居酒屋 | 家庭料理"
         description="車道のりやん食堂で美味しいお料理とお酒をご賞味ください。"
-        image=""
-        url={`${process.env.NEXT_PUBLIC_URL}`}
+        image={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/norisang_logo_seo.jpg`}
+        url=""
+        // url={`${process.env.NEXT_PUBLIC_URL}`}
       />
       <main className="font-murecho bg-[#ffffff] select-auto">
         <div id="wrapper" className="relative w-full">
@@ -130,13 +130,18 @@ function Home({ menu }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const menu: IMenu[] = await loadMenu();
-  return {
-    props: {
-      menu,
-    },
-    revalidate: 604800,
-  };
+  try {
+    const menu: IMenu[] = data;
+    return {
+      props: {
+        menu,
+      },
+      revalidate: 604800,
+    };
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to load menu data!");
+  }
 }
 
 export default Home;
