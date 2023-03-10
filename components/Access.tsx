@@ -34,8 +34,9 @@ export default function Access({ innerRef }: CommonProps) {
         ]}
       />
       <div className="w-full">
-        <div className="relative hidden overflow-hidden h-0 pb-[50%] sm:block">
+        <div className="relative overflow-hidden h-0 pb-[100%] sm:pb-[50%]">
           <iframe
+            title="Access for noriyan-restaurant"
             src={`https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5484.908676762326!2d136.9251555885441!3d35.17292260757658!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600371319b5aab7f%3A0xbc7b858318f7c0e5!2z6LuK6YGT44Gu44KK44KE44KT6aOf5aCC!5e0!3m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}!4v1676041624166!5m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}`}
             width="800"
             style={{ border: 0 }}
@@ -45,17 +46,6 @@ export default function Access({ innerRef }: CommonProps) {
             className="absolute w-full h-full"
           ></iframe>
         </div>
-      </div>
-      <div className="relative w-full sm:hidden">
-        <iframe
-          src={`https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5484.908676762326!2d136.9251555885441!3d35.17292260757658!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600371319b5aab7f%3A0xbc7b858318f7c0e5!2z6LuK6YGT44Gu44KK44KE44KT6aOf5aCC!5e0!3m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}!4v1676041624166!5m2!1s${thisNavigator[0]}!2s${thisNavigator[1]}`}
-          height="440"
-          style={{ border: 0 }}
-          allowFullScreen={false}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="w-full"
-        ></iframe>
       </div>
       <div className="flex items-center justify-center py-8 mt-8 font-semibold text-lgclamp text-slate-700 font-mPlus rounded-xl bg-slate-200">
         <div className="flex flex-col justify-center space-y-1 sm:space-y-2 md:space-y-3">
