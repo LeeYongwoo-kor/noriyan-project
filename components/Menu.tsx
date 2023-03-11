@@ -155,7 +155,7 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
           ))}
         </div>
         <div className="w-full">
-          <ul role="group">
+          <ul>
             <li className="mt-1 space-x-2 space-y-2 overflow-x-auto text-xs mobile:mt-2 md:mt-4 no-scroll whitespace-nowrap mobile:whitespace-normal sm:text-sm">
               {subArr[selectedKinds]?.map((subItem: string, idx: number) => (
                 <button

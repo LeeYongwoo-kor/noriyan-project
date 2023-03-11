@@ -23,8 +23,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - static (local image files)
+     * - robots (robots.txt file)
      * - favicon.ico (favicon file)
      */
-    "/((?!_next/static|_next/image|static|favicon.ico).*)",
+    "/((?!_next/static|_next/image|static|robots|favicon.ico).*)",
   ],
 };
