@@ -1,5 +1,4 @@
 import About from "@components/About";
-import Access from "@components/Access";
 import Footer from "@components/Footer";
 import HeadMeta from "@components/HeadMeta";
 import Info from "@components/Info";
@@ -21,6 +20,12 @@ const Main = dynamic(() => import("@components/Main"), {
 });
 
 const Menu = dynamic(() => import("@components/Menu"), {
+  suspense: true,
+  ssr: false,
+  loading: () => <Loading />,
+});
+
+const Access = dynamic(() => import("@components/Access"), {
   suspense: true,
   ssr: false,
   loading: () => <Loading />,
@@ -118,7 +123,10 @@ function Home({ menu }: HomeProps) {
             </Max7XLScreen>
             <PhotoGallery innerRef={photoGalleryRef} />
             <Max7XLScreen>
-              <Access innerRef={accessRef} />
+              <Access
+                innerRef={accessRef}
+                callbackPosition={handleCallbackMenu}
+              />
               <Info innerRef={infoRef} />
             </Max7XLScreen>
             <Footer />
