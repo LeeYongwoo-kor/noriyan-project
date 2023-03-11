@@ -20,7 +20,7 @@ function Subtitle({
       <div className="relative">
         <h2
           className={cls(
-            "relative z-10 text-3xl md:text-4xl font-extrabold",
+            "relative z-10 text-3xl md:text-4xl font-bold",
             color === "WHITE" ? "text-white" : "text-black"
           )}
         >

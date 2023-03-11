@@ -62,19 +62,19 @@ export default function MenuSpecial() {
         />
       </div>
       {imageIndex !== null ? (
-        <div className="flex flex-col w-[95%] md:w-4/5 min-h-fit sm:h-64 px-4 sm:px-8 pt-5 sm:pt-8 pb-12 mx-auto lg:w-3/5">
+        <div className="flex flex-col w-[95%] md:w-4/5 h-64 px-4 sm:px-8 pt-5 sm:pt-8 pb-12 mx-auto lg:w-3/5">
           <div className="w-full">
             <div className="flex flex-wrap items-end justify-start flex-auto w-full">
               <h2 className="text-2xl font-extrabold mobile:text-3xl sm:text-4xl">
                 {images.slider.menu[imageIndex]?.nameJp}
               </h2>
-              <h3 className="ml-3 text-base font-semibold sm:ml-5 sm:text-2xl text-main font-murecho">
+              <h3 className="ml-3 text-base font-semibold sm:ml-5 sm:text-2xl text-darkmain font-murecho">
                 {getJpCurrency(images.slider.menu[imageIndex]?.price)}
                 <span className="md:text-sm">（税込）</span>
               </h3>
             </div>
             <div>
-              <h3 className="text-sm font-medium text-gray-600 sm:text-base">
+              <h3 className="text-sm font-medium text-gray-500 sm:text-base">
                 {images.slider.menu[imageIndex]?.nameEng}
               </h3>
             </div>
