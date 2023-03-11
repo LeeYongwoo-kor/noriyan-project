@@ -59,7 +59,6 @@ module.exports = {
       },
       fontFamily: {
         mincho: ["Shippori Mincho", "serif"],
-        kosugi: ["Kosugi Maru", "sans-serif"],
         murecho: ["Murecho", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
