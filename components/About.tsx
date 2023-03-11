@@ -1,5 +1,4 @@
 import { images } from "@constants/images";
-import Image from "next/image";
 import { CommonProps } from "types/CommonProps";
 import CustomImage from "./CustomImage";
 import Subtitle from "./Subtitle";
@@ -11,14 +10,15 @@ export default function About({ innerRef }: CommonProps) {
       <div className="flex flex-col items-center justify-center">
         <Subtitle text="ABOUT" />
         <div className="relative w-full h-52">
-          <Image
+          <CustomImage
             src={images?.about?.top?.src}
             alt={images?.about?.top?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             priority={true}
             draggable={false}
+            sizes="1216px"
           />
         </div>
         <div className="w-full px-8 py-10 md:py-14 md:px-0 md:w-160 font-mincho">
@@ -53,8 +53,9 @@ export default function About({ innerRef }: CommonProps) {
               alt={images?.about?.bottom[0]?.alt}
               fill
               className="object-cover"
-              quality={100}
+              quality={75}
               draggable={false}
+              sizes="598px"
             />
           </div>
           <div className="relative w-full">
@@ -63,8 +64,9 @@ export default function About({ innerRef }: CommonProps) {
               alt={images?.about?.bottom[1]?.alt}
               fill
               className="object-cover"
-              quality={100}
+              quality={75}
               draggable={false}
+              sizes="289px"
             />
           </div>
           <div className="relative w-full">
@@ -73,8 +75,9 @@ export default function About({ innerRef }: CommonProps) {
               alt={images?.about?.bottom[2]?.alt}
               fill
               className="object-cover"
-              quality={100}
+              quality={75}
               draggable={false}
+              sizes="289px"
             />
           </div>
           <div className="relative w-full col-span-2 sm:row-span-2">
@@ -83,8 +86,9 @@ export default function About({ innerRef }: CommonProps) {
               alt={images?.about?.bottom[3]?.alt}
               fill
               className="object-cover"
-              quality={100}
+              quality={75}
               draggable={false}
+              sizes="598px"
             />
           </div>
         </div>

@@ -1,6 +1,5 @@
 import { images } from "@constants/images";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CommonProps } from "types/CommonProps";
 import CustomImage from "./CustomImage";
@@ -53,13 +52,14 @@ export default function PhotoGallery({ innerRef }: CommonProps) {
               className="fixed w-[96%] top-photoMobile left-[2%] md:w-2/3 md:left-[16%] lg:w-1/2 md:top-photo lg:left-1/4 bg-shallowBlack"
             >
               <div className="relative w-full h-128">
-                <Image
+                <CustomImage
                   src={selectedPhoto?.src}
                   alt={selectedPhoto?.alt}
                   fill
                   className="object-contain"
-                  quality={100}
+                  quality={80}
                   draggable={false}
+                  priority={true}
                 />
               </div>
             </motion.div>
@@ -87,7 +87,7 @@ export default function PhotoGallery({ innerRef }: CommonProps) {
                   alt={photo.alt}
                   fill
                   className="object-cover"
-                  quality={100}
+                  quality={75}
                   draggable={false}
                 />
               </motion.div>

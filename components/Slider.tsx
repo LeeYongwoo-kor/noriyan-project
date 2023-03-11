@@ -111,9 +111,9 @@ export default function Slider({
           >
             <Image
               src={sliders[imageIndex]?.src}
-              alt={sliders[imageIndex]?.alt}
+              alt={sliders[imageIndex]?.alt ? sliders[imageIndex]?.alt : ""}
               fill
-              quality={80}
+              quality={75}
               priority={true}
               draggable={false}
               className={cls(
@@ -121,21 +121,21 @@ export default function Slider({
                 isCover ? "object-cover" : "object-scale-down"
               )}
               sizes="(min-width: 1024px) 100vw, 
-              (min-width: 769px) 90vw, 
-              80vw"
+              (min-width: 640px) 75vw, 
+              66vw"
             />
             {!isCover ? (
               <Image
                 src={sliders[imageIndex]?.src}
-                alt={sliders[imageIndex]?.alt}
+                alt={sliders[imageIndex]?.alt ? sliders[imageIndex]?.alt : ""}
                 fill
                 priority={true}
                 quality={5}
                 draggable={false}
                 className="z-0 object-fill border border-transparent blur-2xl rounded-4xl"
                 sizes="(min-width: 1024px) 100vw, 
-              (min-width: 769px) 90vw, 
-              80vw"
+              (min-width: 640px) 75vw, 
+              66vw"
               />
             ) : null}
           </motion.div>

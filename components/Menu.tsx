@@ -122,6 +122,7 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
           href="https://dining-menu.com/menu_system/sample_menu3/top.php?sc=215036&n=0&r=1Y/"
           target={"_blank"}
           className="inline-flex flex-col items-center px-4 py-2 font-medium transition-colors border-2 rounded-md shadow-sm cursor-pointer border-slate-400 hover:bg-slate-200"
+          aria-label="Go find out about the sell-out information"
         >
           <p className="flex items-center justify-center text-xs sm:text-sm md:text-base text-slate-400 font-murecho">
             売り切れの情報確認へ
@@ -129,15 +130,18 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
         </Link>
       </Subtitle>
       <div className="flex flex-col items-center justify-center">
-        <div className="flex justify-center w-full space-x-0.5 text-sm font-bold sm:space-x-2 md:text-lg">
+        <div
+          className="flex justify-center w-full space-x-0.5 text-sm font-bold sm:space-x-2 md:text-lg"
+          role="group"
+        >
           {category.map((kinds, idx) => (
             <button
               onClick={() => handleClickKinds(idx)}
               className={cls(
-                "flex justify-center items-center px-4 py-2 transition-colors border shadow-sm w-40 hover:text-white rounded-2xl hover:bg-main focus:outline-none [&>svg]:hover:text-white",
+                "flex justify-center items-center px-4 py-2 transition-colors border shadow-sm w-40 hover:text-white rounded-2xl mobile:hover:bg-highlight focus:outline-none [&>svg]:hover:text-white",
                 selectedKinds === idx
-                  ? "text-white bg-highlight border-transparent"
-                  : "border-main border-2 [&>svg]:text-darkmain"
+                  ? "text-white bg-darkmain border-transparent"
+                  : "border-highlight border-2 [&>svg]:text-darkmain"
               )}
               key={idx}
             >
@@ -151,7 +155,7 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
           ))}
         </div>
         <div className="w-full">
-          <ul>
+          <ul role="group">
             <li className="mt-1 space-x-2 space-y-2 overflow-x-auto text-xs mobile:mt-2 md:mt-4 no-scroll whitespace-nowrap mobile:whitespace-normal sm:text-sm">
               {subArr[selectedKinds]?.map((subItem: string, idx: number) => (
                 <button
@@ -160,9 +164,9 @@ function Menu({ innerRef, menu, callbackPosition }: MenuProps) {
                     "border px-6 h-10 rounded-xl font-medium",
                     selectedSub[category[selectedKinds] as keyof ISubMenu] ===
                       idx
-                      ? "text-white bg-highlight border-transparent"
+                      ? "text-white bg-darkmain border-transparent"
                       : subItem === "おすすめ" || subItem === "季節物"
-                      ? "border-main text-darkmain hover:bg-slate-200"
+                      ? "border-highlight text-darkmain hover:bg-slate-200"
                       : "hover:bg-slate-200 text-slate-700 border-slate-300"
                   )}
                   key={idx}

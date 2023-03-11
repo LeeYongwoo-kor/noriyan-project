@@ -25,7 +25,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.top?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -49,7 +49,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.cover?.alt}
             fill
             className="object-cover opacity-10"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -61,7 +61,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.seat?.alt}
             fill
             className="border-2 border-lightmain"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -90,7 +90,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.bottom[0]?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -100,7 +100,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.bottom[1]?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -110,7 +110,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.bottom[2]?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -122,7 +122,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.bottom[3]?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -132,7 +132,7 @@ export default function Info({ innerRef }: CommonProps) {
             alt={images?.info?.bottom[4]?.alt}
             fill
             className="object-cover"
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>
@@ -185,7 +185,7 @@ export default function Info({ innerRef }: CommonProps) {
             src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/payment_info.png`}
             alt="payment_info"
             fill
-            quality={100}
+            quality={75}
             draggable={false}
           />
         </div>

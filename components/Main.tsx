@@ -30,6 +30,9 @@ export default function Main({ position }: MainProps) {
           quality={100}
           priority={true}
           className="absolute object-cover brightness-90 bg-gradient-to-b from-transparent to-black"
+          sizes="(min-width: 1024px) 100vw, 
+          (min-width: 640px) 75vw, 
+          66vw"
         />
         <Image
           src={images?.main[1]?.src}
@@ -38,6 +41,9 @@ export default function Main({ position }: MainProps) {
           quality={100}
           priority={true}
           className="absolute object-cover brightness-90 bg-gradient-to-b from-transparent to-black animate-change"
+          sizes="(min-width: 1024px) 100vw, 
+          (min-width: 640px) 75vw, 
+          66vw"
         />
         <div className="relative z-10 flex flex-col items-center justify-center h-full">
           <div>
@@ -64,6 +70,7 @@ export default function Main({ position }: MainProps) {
               <Link
                 href="https://www.instagram.com/kurumamichi.noriyan/"
                 target={"_blank"}
+                aria-label="Go to official Instagram"
                 className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-36 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight"
               >
                 <FontAwesomeIcon
@@ -79,6 +86,7 @@ export default function Main({ position }: MainProps) {
             <div className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-32 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
               <button
                 className="flex items-center justify-center"
+                aria-label="menu"
                 onClick={() => handleClick("menu")}
               >
                 <FontAwesomeIcon
@@ -94,6 +102,7 @@ export default function Main({ position }: MainProps) {
             <div className="box-border flex items-center justify-center w-16 transition duration-300 ease-in-out shadow-sm cursor-pointer h-9 sm:h-12 sm:w-32 min-w-fit sm:hover:-translate-y-1 animate-fadein animation-delay-500 sm:hover:scale-105 hover:bg-darkmain shadow-black rounded-3xl bg-highlight">
               <button
                 className="flex items-center justify-center"
+                aria-label="access"
                 onClick={() => handleClick("access")}
               >
                 <svg

@@ -102,7 +102,8 @@ export default function Navbar({
               type="button"
               className="inline-flex items-center justify-center p-3 rounded-md text-main focus:outline-none"
               aria-controls="mobile-smile"
-              aria-expanded="false"
+              aria-pressed="true"
+              aria-expanded="true"
               onClick={handleClickSmile}
             >
               <span className="sr-only">Open main menu</span>
@@ -142,6 +143,7 @@ export default function Navbar({
                   "flex items-end h-full space-x-1 lg:space-x-4 text-sm lg:text-base xl:text-lg font-semibold font-mincho",
                   showNavBar ? "text-black" : "text-white"
                 )}
+                role="group"
               >
                 {navbar.map((name: NavbarTypes, idx: number) => (
                   <button
@@ -167,6 +169,7 @@ export default function Navbar({
                   <Link
                     href={`tel:${PHONE_NUMBER}`}
                     className="inline-flex flex-col items-center px-4 py-2 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none"
+                    aria-label="Booking or Contacting"
                   >
                     <div className="hidden text-xs md:block">
                       ご予約・お問い合わせ

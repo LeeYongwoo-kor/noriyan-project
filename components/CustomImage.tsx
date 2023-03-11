@@ -3,9 +3,10 @@ import React, { useState, ComponentProps } from "react";
 
 interface CustomImageProps extends ComponentProps<typeof Image> {
   alt: string;
+  sizes?: string;
 }
 
-function CustomImage({ alt, ...props }: CustomImageProps) {
+function CustomImage({ alt, sizes, ...props }: CustomImageProps) {
   const [src, setSrc] = useState(props?.src);
 
   return (
@@ -13,12 +14,14 @@ function CustomImage({ alt, ...props }: CustomImageProps) {
       {...props}
       src={src}
       alt={alt}
-      onError={() => setSrc("/assets/noriyan_logo.jpg")}
+      onError={() => setSrc(`/static/noriyan_logo.jpg`)}
       placeholder="blur"
-      blurDataURL="/assets/blur_placeholder_image.jpg"
-      sizes="(min-width: 1024px) 100vw, 
-        (min-width: 769px) 80vw, 
-        66vw"
+      blurDataURL={`/static/blur_placeholder_image.jpg`}
+      sizes={
+        sizes
+          ? sizes
+          : "(min-width: 1024px) 100vw, (min-width: 640px) 75vw, 66vw"
+      }
     />
   );
 }

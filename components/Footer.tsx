@@ -74,6 +74,7 @@ function Footer() {
                 <Link
                   href="https://www.instagram.com/kurumamichi.noriyan/"
                   target={"_blank"}
+                  aria-label="Go to official Instagram"
                 >
                   <FontAwesomeIcon
                     className="hover:text-main"

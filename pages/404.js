@@ -16,6 +16,7 @@ export default function Custom404() {
           <Link
             href="/"
             className="box-border flex items-center justify-center px-4 py-2 w-52 sm:w-60 rounded-xl bg-main hover:bg-highlight"
+            aria-label="Back to homepage"
           >
             Back to homepage
           </Link>

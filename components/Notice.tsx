@@ -44,6 +44,7 @@ export default function Notice({ innerRef }: CommonProps) {
                   <Link
                     href={`tel:${PHONE_NUMBER}`}
                     className="inline-flex flex-col items-center w-full px-4 py-4 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
+                    aria-label="Booking"
                   >
                     <div className="flex items-center justify-center">
                       <svg
@@ -87,6 +88,7 @@ export default function Notice({ innerRef }: CommonProps) {
                     href="https://www.instagram.com/kurumamichi.noriyan/"
                     target={"_blank"}
                     className="inline-flex flex-col items-center justify-center w-full px-4 py-4 font-medium text-white transition-colors border border-transparent rounded-md shadow-sm cursor-pointer bg-highlight hover:bg-darkmain focus:outline-none focus:ring-2 focus:ring-darkmain focus:ring-offset-2"
+                    aria-label="Go to official Instagram"
                   >
                     <div className="flex items-center justify-center">
                       <FontAwesomeIcon

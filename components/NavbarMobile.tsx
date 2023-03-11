@@ -36,6 +36,7 @@ function NavbarMobile({
               ? "text-yellow-300"
               : "hover:text-white"
           )}
+          aria-label="notice"
         >
           <FontAwesomeIcon size="2x" icon={faBullhorn} />
           <span>お知らせ</span>
@@ -48,6 +49,7 @@ function NavbarMobile({
               ? "text-yellow-300"
               : "hover:text-white"
           )}
+          aria-label="menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +72,7 @@ function NavbarMobile({
               ? "text-yellow-300"
               : "hover:text-white"
           )}
+          aria-label="photoGallery"
         >
           <FontAwesomeIcon size="2x" icon={faImages} />
           <span>ギャラリー</span>
@@ -82,6 +85,7 @@ function NavbarMobile({
               ? "text-yellow-300"
               : "hover:text-white"
           )}
+          aria-label="access"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +109,7 @@ function NavbarMobile({
               ? "text-yellow-300"
               : " hover:text-white"
           )}
+          aria-label="info"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
