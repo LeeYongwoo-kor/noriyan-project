@@ -1,6 +1,2 @@
 User-agent: *
 Allow: /
-Disallow: /api*/
-
-User-agent: Mediapartners-Google
-Allow: /
