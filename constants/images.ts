@@ -61,11 +61,11 @@ interface IImage {
 export const images: IImage = {
   main: [
     {
-      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/main_restaurant_2_hosei.jpg`,
+      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/main_restaurant_01.jpg`,
       alt: `main_image_01`,
     },
     {
-      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/main_restaurant_3_hosei.jpg`,
+      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/main_restaurant_02.jpg`,
       alt: `main_image_02`,
     },
   ],
@@ -83,7 +83,7 @@ export const images: IImage = {
     menu: [
       {
         id: "001",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_011.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_01.jpg`,
         alt: "黒毛和牛ロースステーキ",
         nameJp: "黒毛和牛ロースステーキ",
         nameEng: "Japanese Black Beef Steak",
@@ -93,7 +93,7 @@ export const images: IImage = {
       },
       {
         id: "002",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_022.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_02.jpg`,
         alt: "ナシゴレン",
         nameJp: "ナシゴレン",
         nameEng: "Nasi Goreng (Indonesian Fried Rice)",
@@ -103,7 +103,7 @@ export const images: IImage = {
       },
       {
         id: "003",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_033.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_03.jpg`,
         alt: "からすみ餅",
         nameJp: "からすみ餅",
         nameEng: "Karasumi Mochi",
@@ -113,7 +113,7 @@ export const images: IImage = {
       },
       {
         id: "004",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_044.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_04.jpg`,
         alt: "里芋のキッシュ",
         nameJp: "里芋のキッシュ",
         nameEng: "Sweet Potato Kish",
@@ -123,7 +123,7 @@ export const images: IImage = {
       },
       {
         id: "005",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_055.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_05.jpg`,
         alt: "地鶏ステーキジンジャーソース",
         nameJp: "地鶏ステーキジンジャーソース",
         nameEng: "Ginger Sauce Chicken Steak",
@@ -133,7 +133,7 @@ export const images: IImage = {
       },
       {
         id: "006",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_066.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_06.jpg`,
         alt: "グリーンカレー",
         nameJp: "グリーンカレー",
         nameEng: "Green Curry",
@@ -143,7 +143,7 @@ export const images: IImage = {
       },
       {
         id: "007",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_077.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_07.jpg`,
         alt: "明太クリームチーズ大根",
         nameJp: "明太クリームチーズ大根",
         nameEng: "Mentai Cream Cheese Radish",
@@ -153,7 +153,7 @@ export const images: IImage = {
       },
       {
         id: "008",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_088.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_08.jpg`,
         alt: "締めパフェ",
         nameJp: "締めパフェ",
         nameEng: "Dessert Parfait",
@@ -163,7 +163,7 @@ export const images: IImage = {
       },
       {
         id: "009",
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_099.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/food_restaurant_09.jpg`,
         alt: "ミルクティーシャーベット",
         nameJp: "ミルクティーシャーベット",
         nameEng: "Milk Tea Sharbet",
@@ -180,7 +180,7 @@ export const images: IImage = {
     },
     bottom: [
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_004.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_01.jpg`,
         alt: `about_bottom_image_01`,
       },
       {
@@ -188,11 +188,11 @@ export const images: IImage = {
         alt: `about_bottom_image_02`,
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_01.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_03.jpg`,
         alt: `about_bottom_image_03`,
       },
       {
-        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_003.jpg`,
+        src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/about_restaurant_04.jpg`,
         alt: `about_bottom_image_04`,
       },
     ],
@@ -207,7 +207,7 @@ export const images: IImage = {
       alt: `info_cover_image`,
     },
     seat: {
-      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/info_restaurant_seat01.jpg`,
+      src: `${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/info_restaurant_seat.jpg`,
       alt: `info_seat_map`,
     },
     bottom: [

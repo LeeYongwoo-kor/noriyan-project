@@ -111,7 +111,11 @@ export default function Slider({
           >
             <Image
               src={sliders[imageIndex]?.src}
-              alt={sliders[imageIndex]?.alt ? sliders[imageIndex]?.alt : ""}
+              alt={
+                sliders[imageIndex]?.alt
+                  ? sliders[imageIndex]?.alt
+                  : "Slider Image"
+              }
               fill
               quality={75}
               priority={true}
@@ -127,7 +131,11 @@ export default function Slider({
             {!isCover ? (
               <Image
                 src={sliders[imageIndex]?.src}
-                alt={sliders[imageIndex]?.alt ? sliders[imageIndex]?.alt : ""}
+                alt={
+                  sliders[imageIndex]?.alt
+                    ? sliders[imageIndex]?.alt
+                    : "Slider Image"
+                }
                 fill
                 priority={true}
                 quality={5}

@@ -27,6 +27,7 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover"
             quality={75}
             draggable={false}
+            sizes="608px"
           />
         </div>
         <div className="relative w-full p-10">
@@ -51,6 +52,7 @@ export default function Info({ innerRef }: CommonProps) {
             className="object-cover opacity-10"
             quality={75}
             draggable={false}
+            sizes="608px"
           />
         </div>
       </div>
