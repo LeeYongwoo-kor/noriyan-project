@@ -11,7 +11,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128],
     deviceSizes: [480, 640, 769, 1024, 1280, 1920],
     domains: [
-      "https://noriyan-project-test-ck61n8grz-leeyongwoo-kor.vercel.app",
+      "noriyan-project-test-ck61n8grz-leeyongwoo-kor.vercel.app",
       "norisang-project.s3.ap-northeast-1.amazonaws.com",
       "d22suaf3v2qshw.cloudfront.net",
       "dining-menu.com",
