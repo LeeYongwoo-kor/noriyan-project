@@ -101,8 +101,7 @@ function Home({ menu }: HomeProps) {
         title="車道のりやん食堂 | 居酒屋 | 家庭料理"
         description="車道のりやん食堂で美味しいお料理とお酒をご賞味ください。"
         image={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/norisang_logo_seo.jpg`}
-        url=""
-        // url={`${process.env.NEXT_PUBLIC_URL}`}
+        url={`${process.env.NEXT_PUBLIC_URL}`}
       />
       <main className="font-murecho bg-[#ffffff] select-auto">
         <div id="wrapper" className="relative w-full">

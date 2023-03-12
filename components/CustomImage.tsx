@@ -14,7 +14,9 @@ function CustomImage({ alt, sizes, ...props }: CustomImageProps) {
       {...props}
       src={src}
       alt={alt}
-      onError={() => setSrc(`/static/noriyan_logo.jpg`)}
+      onError={() =>
+        setSrc(`${process.env.NEXT_PUBLIC_CLOUD_FRONT_DOMAIN}/noriyan_logo.jpg`)
+      }
       placeholder="blur"
       blurDataURL={`/static/blur_placeholder_image.jpg`}
       sizes={
