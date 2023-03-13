@@ -147,7 +147,6 @@ export default function Slider({
               />
             ) : null}
           </motion.div>
-          <motion.img />
         </AnimatePresence>
         <svg
           onClick={() => paginate(-1)}
